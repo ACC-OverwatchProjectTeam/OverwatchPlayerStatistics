@@ -1,0 +1,60 @@
+{
+  "competitiveStats": {
+    "awards": {
+      "cards": 21,
+      "medals": 265,
+      "medalsBronze": 84,
+      "medalsSilver": 99,
+      "medalsGold": 82
+    },
+    "games": {
+      "played": 105,
+      "won": 55
+    }
+  },
+  "endorsement": 3,
+  "endorsementIcon": "https://static.playoverwatch.com/svg/icons/endorsement-frames-3c9292c49d.svg#_3",
+  "gamesWon": 1666,
+  "icon": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/f7d2e053297f05c7ed5c32c736794ebdfd53d9337d4f714d5958c68aacc134b5.png",
+  "level": 21,
+  "levelIcon": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/4d63c2aadf536e87c84bdb7157c7b688cffb286e17a5362d2fa5c5281f4fc2a2.png",
+  "name": "Loupine#1170",
+  "prestige": 5,
+  "prestigeIcon": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/d35d380b7594b8f6af2d01040d80a5bfb6621553406c0905d4764bdc92a4ede8.png",
+  "private": false,
+  "quickPlayStats": {
+    "awards": {
+      "cards": 377,
+      "medals": 3116,
+      "medalsBronze": 938,
+      "medalsSilver": 1015,
+      "medalsGold": 1162
+    },
+    "games": {
+      "played": 1264,
+      "won": 660
+    }
+  },
+  "rating": 2785,
+  "ratingIcon": "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-PlatinumTier.png",
+  "ratings": [
+    {
+      "level": 2767,
+      "role": "tank",
+      "roleIcon": "https://static.playoverwatch.com/img/pages/career/icon-tank-8a52daaf01.png",
+      "rankIcon": "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-PlatinumTier.png"
+    },
+    {
+      "level": 2700,
+      "role": "damage",
+      "roleIcon": "https://static.playoverwatch.com/img/pages/career/icon-offense-6267addd52.png",
+      "rankIcon": "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-PlatinumTier.png"
+    },
+    {
+      "level": 2890,
+      "role": "support",
+      "roleIcon": "https://static.playoverwatch.com/img/pages/career/icon-support-46311a4210.png",
+      "rankIcon": "https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-PlatinumTier.png"
+    }
+  ]
+}
