@@ -12,4 +12,10 @@ public class Parser {
         JSONArray playerName = path.read(profileDataStream);
         return playerName.get(0).toString();
     }
+
+    public String accessSkillRating(InputStream profileDataStream) throws IOException {
+        JsonPath path = JsonPath.compile("$..rating");
+        JSONArray skillRating = path.read(profileDataStream);
+        return String.valueOf(skillRating.get(0));
+    }
 }
