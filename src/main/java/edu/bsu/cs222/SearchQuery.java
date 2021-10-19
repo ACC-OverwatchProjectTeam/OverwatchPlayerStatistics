@@ -1,7 +1,15 @@
 package edu.bsu.cs222;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class SearchQuery {
-    public String createURLFromSearchQuery(String searchQuery) {
-        return String.format("https://ow-api.com/v1/stats/pc/us/%s/complete", searchQuery.replace('#', '-'));
+    public String createURLFromSearchQuery(String searchQuery) throws URISyntaxException, IOException, InterruptedException {
+        String queryURL = String.format(
+                "https://ow-api.com/v1/stats/pc/us/%s/complete",
+                searchQuery.replace('#', '-'));
+
+        QueryEngine engine = new QueryEngine();
+        return engine.sendHTTPRequest(queryURL);
     }
 }
