@@ -23,4 +23,9 @@ public class ParserTest {
     public void testAccessSkillRating() {
         Assertions.assertEquals("2785", parser.accessSkillRating(testData));
     }
+    
+    @Test
+    public void testAccessLevel() {
+        Assertions.assertEquals("21", parser.accessLevel(testData));
+    }
 }

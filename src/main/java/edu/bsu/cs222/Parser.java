@@ -17,4 +17,10 @@ public class Parser {
         JSONArray skillRating = path.read(profileDataStream);
         return String.valueOf(skillRating.get(0));
     }
+
+    public String accessLevel(String profileDataStream) {
+        JsonPath path = JsonPath.compile("$..level");
+        JSONArray level = path.read(profileDataStream);
+        return String.valueOf(level.get(0));
+    }
 }
