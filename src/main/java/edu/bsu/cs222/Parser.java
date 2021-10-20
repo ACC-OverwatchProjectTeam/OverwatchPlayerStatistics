@@ -3,8 +3,6 @@ package edu.bsu.cs222;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 
-import java.io.IOException;
-
 public class Parser {
     public String accessUsername(String profileDataStream) {
         JsonPath path = JsonPath.compile("$..name");
