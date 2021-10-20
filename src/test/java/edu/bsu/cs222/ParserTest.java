@@ -1,17 +1,24 @@
 package edu.bsu.cs222;
 
-import com.google.common.io.Resources;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.io.InputStream;
 
 public class ParserTest {
-    private final String testData = Resources.toString(Resources.getResource("LoupineData.txt"), StandardCharsets.UTF_8);
     private final Parser parser = new Parser();
+    private final InputStream dataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("LoupineData.txt");
+    private String testData;
 
-    public ParserTest() throws IOException {
+    @BeforeEach
+    public void setup() throws IOException {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        assert dataStream != null;
+        dataStream.transferTo(byteArrayOutputStream);
+        this.testData = byteArrayOutputStream.toString();
     }
 
     @Test
