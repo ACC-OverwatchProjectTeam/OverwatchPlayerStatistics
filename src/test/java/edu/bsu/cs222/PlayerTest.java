@@ -18,9 +18,11 @@ public class PlayerTest {
         assert dataStream != null;
         dataStream.transferTo(byteArrayOutputStream);
         String testData = byteArrayOutputStream.toString();
-
-        Builder builder = new Builder();
-        this.player = builder.build(testData);
+        this.player = new Player.Builder().parserSetup(testData)
+                .withPlayerData()
+                .withPlayerRatingInfo()
+                .withPlayerLevel().
+                withQuickPlayGameData();
     }
 
     @Test
@@ -65,4 +67,5 @@ public class PlayerTest {
     public void testAccessTotalQuickPlayWins() {
         Assertions.assertEquals("660", player.accessTotalQuickPlayWins());
     }
+
 }
