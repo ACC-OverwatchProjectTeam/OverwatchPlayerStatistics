@@ -4,52 +4,57 @@ import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 
 public class Parser {
-    public String accessUsername(String profileDataStream) {
+    private final String dataStream;
+
+    public Parser(String dataStream){
+        this.dataStream = dataStream;
+    }
+
+    public String accessUsername() {
         JsonPath path = JsonPath.compile("$..name");
-        JSONArray playerName = path.read(profileDataStream);
+        JSONArray playerName = path.read(dataStream);
         return playerName.get(0).toString();
     }
 
-    public String accessPlayerIcon(String profileDataStream) {
+    public String accessPlayerIcon() {
         JsonPath path = JsonPath.compile("$..icon");
-        JSONArray playerIcon = path.read(profileDataStream);
+        JSONArray playerIcon = path.read(dataStream);
         return String.valueOf(playerIcon.get(0));
     }
 
-    public String accessSkillRating(String profileDataStream) {
+    public String accessSkillRating() {
         JsonPath path = JsonPath.compile("$..rating");
-        JSONArray skillRating = path.read(profileDataStream);
+        JSONArray skillRating = path.read(dataStream);
         return String.valueOf(skillRating.get(0));
     }
 
-    public String accessRatingIcon(String profileDataStream) {
+    public String accessRatingIcon() {
         JsonPath path = JsonPath.compile("$..ratingIcon");
-        JSONArray ratingIcon = path.read(profileDataStream);
+        JSONArray ratingIcon = path.read(dataStream);
         return String.valueOf(ratingIcon.get(0));
     }
 
-    public String accessLevel(String profileDataStream) {
+    public String accessLevel() {
         JsonPath path = JsonPath.compile("$..level");
-        JSONArray level = path.read(profileDataStream);
+        JSONArray level = path.read(dataStream);
         return String.valueOf(level.get(0));
     }
 
-    public String accessPrestige(String profileDataStream) {
+    public String accessPrestige() {
         JsonPath path = JsonPath.compile("$..prestige");
-        JSONArray prestige = path.read(profileDataStream);
+        JSONArray prestige = path.read(dataStream);
         return String.valueOf(prestige.get(0));
     }
 
-
-    public String accessTotalQuickPlayGames(String profileDataStream) {
+    public String accessTotalQuickPlayGames() {
         JsonPath path = JsonPath.compile("$..quickPlayStats.games.played");
-        JSONArray totalQuickPlayGames = path.read(profileDataStream);
+        JSONArray totalQuickPlayGames = path.read(dataStream);
         return String.valueOf(totalQuickPlayGames.get(0));
     }
 
-    public String accessTotalQuickPlayWins(String profileDataStream) {
+    public String accessTotalQuickPlayWins() {
         JsonPath path = JsonPath.compile("$..quickPlayStats.games.won");
-        JSONArray totalQuickPlayWins = path.read(profileDataStream);
+        JSONArray totalQuickPlayWins = path.read(dataStream);
         return String.valueOf(totalQuickPlayWins.get(0));
     }
 }

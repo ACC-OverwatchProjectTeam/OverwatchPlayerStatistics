@@ -1,13 +1,13 @@
 package edu.bsu.cs222;
 
 public class Builder {
-    private final Parser parser = new Parser();
-    private String dataStream;
+    private Parser parser;
     public String playerName, playerIcon, skillRating, ratingIcon,
             level, prestige, totalQuickPlayGames, totalQuickPlayWins;
 
     public Player build(String dataStream){
-        this.dataStream = dataStream;
+        this.parser = new Parser(dataStream);
+
         return (withPlayerData()
                 .withPlayerRatingInfo()
                 .withPlayerLevel().
@@ -15,26 +15,26 @@ public class Builder {
     }
 
     private Builder withPlayerData(){
-        this.playerName = parser.accessUsername(dataStream);
-        this.playerIcon = parser.accessPlayerIcon(dataStream);
+        this.playerName = parser.accessUsername();
+        this.playerIcon = parser.accessPlayerIcon();
         return this;
     }
 
     private Builder withPlayerRatingInfo(){
-        this.skillRating = parser.accessSkillRating(dataStream);
-        this.ratingIcon = parser.accessRatingIcon(dataStream);
+        this.skillRating = parser.accessSkillRating();
+        this.ratingIcon = parser.accessRatingIcon();
         return this;
     }
 
     private Builder withPlayerLevel(){
-        this.level = parser.accessLevel(dataStream);
-        this.prestige = parser.accessPrestige(dataStream);
+        this.level = parser.accessLevel();
+        this.prestige = parser.accessPrestige();
         return this;
     }
 
     private Player withQuickPlayGameData(){
-        this.totalQuickPlayGames = parser.accessTotalQuickPlayGames(dataStream);
-        this.totalQuickPlayWins = parser.accessTotalQuickPlayWins(dataStream);
+        this.totalQuickPlayGames = parser.accessTotalQuickPlayGames();
+        this.totalQuickPlayWins = parser.accessTotalQuickPlayWins();
         return new Player(this);
     }
 }
