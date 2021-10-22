@@ -29,17 +29,17 @@ public class ParserTest {
 
     @Test
     public void testAccessSkillRating() {
-        Assertions.assertEquals("2785", parser.accessSkillRating());
+        Assertions.assertEquals(2785, parser.accessSkillRating());
     }
     
     @Test
     public void testAccessLevel() {
-        Assertions.assertEquals("21", parser.accessLevel());
+        Assertions.assertEquals(21, parser.accessLevel());
     }
 
     @Test
     public void testAccessPrestige() {
-        Assertions.assertEquals("5", parser.accessPrestige());
+        Assertions.assertEquals(5, parser.accessPrestige());
     }
 
     @Test
@@ -57,11 +57,11 @@ public class ParserTest {
 
     @Test
     public void testAccessTotalQuickPlayGames(){
-        Assertions.assertEquals("1264", parser.accessTotalQuickPlayGames());
+        Assertions.assertEquals(1264, parser.accessTotalQuickPlayGames());
     }
 
     @Test
     public void testAccessTotalQuickPlayWins(){
-        Assertions.assertEquals("660", parser.accessTotalQuickPlayWins());
+        Assertions.assertEquals(660, parser.accessTotalQuickPlayWins());
     }
 }
