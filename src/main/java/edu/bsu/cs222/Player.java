@@ -4,12 +4,12 @@ public class Player {
     public static final class Builder {
         private String playerName;
         private String playerIcon;
-        private String skillRating;
+        private Integer skillRating;
         private String ratingIcon;
-        private String level;
-        private String prestige;
-        private String totalQuickPlayGames;
-        private String totalQuickPlayWins;
+        private Integer level;
+        private Integer prestige;
+        private Integer totalQuickPlayGames;
+        private Integer totalQuickPlayWins;
         private Parser parser;
 
         public Builder parserSetup(String dataStream){
@@ -45,12 +45,12 @@ public class Player {
 
     private final String playerName;
     private final String playerIcon;
-    private final String skillRating;
+    private final Integer skillRating;
     private final String ratingIcon;
-    private final String level;
-    private final String prestige;
-    private final String totalQuickPlayGames;
-    private final String totalQuickPlayWins;
+    private final Integer level;
+    private final Integer prestige;
+    private final Integer totalQuickPlayGames;
+    private final Integer totalQuickPlayWins;
 
     public Player(Builder builder) {
         this.playerName = builder.playerName;
@@ -71,7 +71,7 @@ public class Player {
         return playerIcon;
     }
 
-    public String accessSkillRating() {
+    public Integer accessSkillRating() {
         return skillRating;
     }
 
@@ -79,19 +79,19 @@ public class Player {
         return ratingIcon;
     }
 
-    public String accessLevel() {
+    public Integer accessLevel() {
         return level;
     }
 
-    public String accessPrestige() {
+    public Integer accessPrestige() {
         return prestige;
     }
 
-    public String accessTotalQuickPlayGames() {
+    public Integer accessTotalQuickPlayGames() {
         return totalQuickPlayGames;
     }
 
-    public String accessTotalQuickPlayWins() {
+    public Integer accessTotalQuickPlayWins() {
         return totalQuickPlayWins;
     }
 }
