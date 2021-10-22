@@ -2,8 +2,8 @@ package edu.bsu.cs222;
 
 public class DataFormatter {
 
-    public String formatRank(String s) {
-        int rank = Integer.parseInt(s);
+    public String formatRank(String skillRating) {
+        int rank = Integer.parseInt(skillRating);
         if (rank > 3999){
             return "Grandmaster";
         }
@@ -25,5 +25,9 @@ public class DataFormatter {
         else{
             return "Bronze";
         }
+    }
+
+    public Integer convertStringToInteger(String integer) {
+        return Integer.parseInt(integer);
     }
 }
