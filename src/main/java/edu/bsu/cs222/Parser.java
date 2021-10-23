@@ -58,4 +58,16 @@ public class Parser {
         JSONArray totalQuickPlayWins = path.read(dataStream);
         return formatter.convertStringToInteger(String.valueOf(totalQuickPlayWins.get(0)));
     }
+
+    public Integer accessTotalCompetitiveGames() {
+        JsonPath path = JsonPath.compile("$..competitiveStats.games.played");
+        JSONArray totalCompetitiveGames = path.read(dataStream);
+        return formatter.convertStringToInteger(String.valueOf(totalCompetitiveGames.get(0)));
+    }
+
+    public Integer accessTotalCompetitiveWins() {
+        JsonPath path = JsonPath.compile("$..competitiveStats.games.won");
+        JSONArray totalCompetitiveWins = path.read(dataStream);
+        return formatter.convertStringToInteger(String.valueOf(totalCompetitiveWins.get(0)));
+    }
 }

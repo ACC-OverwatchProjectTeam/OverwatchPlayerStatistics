@@ -64,4 +64,14 @@ public class ParserTest {
     public void testAccessTotalQuickPlayWins(){
         Assertions.assertEquals(660, parser.accessTotalQuickPlayWins());
     }
+
+    @Test
+    public void testAccessTotalCompetitiveGames(){
+        Assertions.assertEquals(105, parser.accessTotalCompetitiveGames());
+    }
+
+    @Test
+    public void testAccessTotalCompetitiveWins(){
+        Assertions.assertEquals(55, parser.accessTotalCompetitiveWins());
+    }
 }

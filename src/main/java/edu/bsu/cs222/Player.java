@@ -10,6 +10,8 @@ public class Player {
         private Integer prestige;
         private Integer totalQuickPlayGames;
         private Integer totalQuickPlayWins;
+        private Integer totalCompetitiveGames;
+        private Integer totalCompetitiveWins;
         private Parser parser;
 
         public Builder parserSetup(String dataStream){
