@@ -70,15 +70,15 @@ public class OverwatchApplication extends Application {
     private void setupSearchHBox() {
         searchHBox.getChildren().addAll(searchInputField, searchButton);
         searchHBox.setAlignment(Pos.TOP_CENTER);
-        searchHBox.setMaxHeight(75);
+        searchHBox.setMaxHeight(50);
 
-        searchInputField.setMinHeight(75);
+        searchInputField.setMinHeight(50);
         searchInputField.setMinWidth(400);
-        searchInputField.setFont(Font.font(30));
+        searchInputField.setFont(Font.font(20));
 
-        searchButton.setMinHeight(75);
+        searchButton.setMinHeight(50);
         searchButton.setMinWidth(200);
-        searchButton.setFont(Font.font(30));
+        searchButton.setFont(Font.font(20));
     }
 
     private void setupPlayerInfoBox() {
@@ -86,10 +86,10 @@ public class OverwatchApplication extends Application {
         playerInfoBox.setAlignment(Pos.CENTER);
         playerInfoBox.setVisible(false);
 
-        playerName.setMinSize(400,75);
-        playerName.setFont(Font.font(30));
+        playerName.setFont(Font.font(20));
+        playerName.autosize();
 
-        playerLevel.setFont(Font.font(30));
+        playerLevel.setFont(Font.font(20));
         playerLevel.autosize();
     }
 
@@ -100,10 +100,10 @@ public class OverwatchApplication extends Application {
         gamemodeSelectionBox.setVisible(false);
 
         competitiveButton.setMinSize(200, 75);
-        competitiveButton.setFont(Font.font(30));
+        competitiveButton.setFont(Font.font(20));
 
         quickPlayButton.setMinSize(200, 75);
-        quickPlayButton.setFont(Font.font(30));
+        quickPlayButton.setFont(Font.font(20));
     }
 
     private void setupCompetitiveStatsBox() {
@@ -112,13 +112,13 @@ public class OverwatchApplication extends Application {
         competitiveStatsVBox.setAlignment(Pos.TOP_CENTER);
         competitiveStatsVBox.setVisible(false);
 
-        skillRating.setFont(Font.font(30));
+        skillRating.setFont(Font.font(20));
         skillRating.autosize();
 
-        competitiveGamesPlayed.setFont(Font.font(30));
+        competitiveGamesPlayed.setFont(Font.font(20));
         competitiveGamesPlayed.autosize();
 
-        competitiveGamesWon.setFont(Font.font(30));
+        competitiveGamesWon.setFont(Font.font(20));
         competitiveGamesWon.autosize();
     }
 
@@ -127,10 +127,10 @@ public class OverwatchApplication extends Application {
         quickPlayStatsVBox.setAlignment(Pos.TOP_RIGHT);
         quickPlayStatsVBox.setVisible(false);
 
-        quickPlayGamesPlayed.setFont(Font.font(30));
+        quickPlayGamesPlayed.setFont(Font.font(20));
         quickPlayGamesPlayed.autosize();
 
-        quickPlayGamesWon.setFont(Font.font(30));
+        quickPlayGamesWon.setFont(Font.font(20));
         quickPlayGamesWon.autosize();
     }
 
@@ -142,7 +142,7 @@ public class OverwatchApplication extends Application {
     }
 
     private void loadRatingIcon() {
-        Image ratingIcon = new Image(player.accessRatingIcon());
+        Image ratingIcon = new Image(player.accessRatingIcon(), 100, 100, false, false);
         ImageView ratingIconView = new ImageView();
         ratingIconView.setImage(ratingIcon);
         competitiveStatsVBox.getChildren().add(0,ratingIconView);
