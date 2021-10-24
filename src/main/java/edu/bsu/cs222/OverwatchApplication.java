@@ -64,30 +64,43 @@ public class OverwatchApplication extends Application {
     }
 
     private final class InitializePlayerTask implements Runnable {
+        private final OverwatchApplication application = OverwatchApplication.this;
 
         @Override
         public void run() {
+            setPlayerData();
+            setPlayer();
+            addPlayerIconToGUI();
+            addRankingIconToGUI();
+        }
+
+        private void setPlayerData(){
             SearchQuery searchQuery = new SearchQuery();
             String playerBattleTag = searchInputField.getText();
-
             try {
-                OverwatchApplication.this.playerData = searchQuery.createURLFromSearchQuery(playerBattleTag);
+                application.playerData = searchQuery.createURLFromSearchQuery(playerBattleTag);
             } catch (URISyntaxException | InterruptedException | IOException e) {
                 e.printStackTrace();
             }
+        }
 
-            OverwatchApplication.this.player = new Player.Builder().parserSetup(playerData)
+        private void setPlayer(){
+            application.player = new Player.Builder().parserSetup(playerData)
                     .withPlayerData()
                     .withPlayerRatingInfo()
                     .withPlayerLevel()
                     .withCompetitiveGameData()
                     .withQuickPlayGameData();
+        }
 
-            OverwatchApplication.this.searchHBox.getChildren()
-                    .add(OverwatchApplication.this.loadPlayerIcon());
+        private void addPlayerIconToGUI(){
+            application.searchHBox.getChildren()
+                    .add(application.loadPlayerIcon());
+        }
 
-            OverwatchApplication.this.searchHBox.getChildren()
-                    .add(OverwatchApplication.this.loadRatingIcon());
+        private void addRankingIconToGUI(){
+            application.searchHBox.getChildren()
+                    .add(application.loadRatingIcon());
         }
     }
 }
