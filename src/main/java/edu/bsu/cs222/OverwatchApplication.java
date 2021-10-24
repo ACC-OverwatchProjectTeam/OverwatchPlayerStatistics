@@ -9,33 +9,31 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class OverwatchApplication extends Application {
+    private final TextField searchInputField;
+    private final Button searchButton;
+
+    public OverwatchApplication(){
+        searchInputField = new TextField("Enter your exact BattleTag");
+        searchButton = new Button("Search");
+    }
+
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Overwatch Application");
-        primaryStage.setScene(createScene());
+        primaryStage.setScene(createGUI());
         primaryStage.show();
     }
 
-    private Scene createScene() {
+    private Scene createGUI() {
         HBox searchHBox = createSearchHBox();
-
         int sceneWidth = 1280;
         int sceneHeight = 720;
-        return new Scene(searchHBox, sceneWidth,sceneHeight);
+        return new Scene(searchHBox,sceneWidth,sceneHeight);
     }
 
     private HBox createSearchHBox() {
-        TextField searchLine = new TextField("Enter your exact BattleTag");
-        searchLine.setPrefWidth(200);
-        searchLine.setPrefHeight(100);
-
-        Button searchButton = new Button("Search");
-        searchButton.setPrefWidth(200);
-        searchButton.setPrefHeight(100);
-
-        HBox searchHBox = new HBox(searchLine, searchButton);
+        HBox searchHBox = new HBox(searchInputField, searchButton);
         searchHBox.setAlignment(Pos.TOP_CENTER);
         return searchHBox;
     }
-
 }
