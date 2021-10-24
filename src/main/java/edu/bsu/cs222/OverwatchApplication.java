@@ -5,6 +5,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -15,8 +17,10 @@ public class OverwatchApplication extends Application {
     private final Runnable initializePlayerTask = new OverwatchApplication.InitializePlayerTask();
     private final TextField searchInputField;
     private final Button searchButton;
-    public Player player;
+    public HBox searchHBox = new HBox();
     public String playerData;
+    public Player player;
+
 
     public OverwatchApplication(){
         searchInputField = new TextField("Enter your exact BattleTag");
@@ -39,9 +43,17 @@ public class OverwatchApplication extends Application {
     }
 
     private HBox createSearchHBox() {
-        HBox searchHBox = new HBox(searchInputField, searchButton);
+        searchHBox.getChildren().add(searchInputField);
+        searchHBox.getChildren().add(searchButton);
         searchHBox.setAlignment(Pos.TOP_CENTER);
         return searchHBox;
+    }
+
+    public ImageView loadPlayerIcon(){
+        Image playerIcon = new Image(player.accessPlayerIcon());
+        ImageView playerIconView = new ImageView();
+        playerIconView.setImage(playerIcon);
+        return playerIconView;
     }
 
     private final class InitializePlayerTask implements Runnable {
@@ -63,6 +75,9 @@ public class OverwatchApplication extends Application {
                     .withPlayerLevel()
                     .withCompetitiveGameData()
                     .withQuickPlayGameData();
+
+            OverwatchApplication.this.searchHBox.getChildren()
+                    .add(OverwatchApplication.this.loadPlayerIcon());
         }
     }
 }
