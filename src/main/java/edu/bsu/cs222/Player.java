@@ -37,12 +37,17 @@ public class Player {
             return this;
         }
 
+        public Builder withCompetitiveGameData(){
+            this.totalCompetitiveGames = parser.accessTotalCompetitiveGames();
+            this.totalCompetitiveWins = parser.accessTotalCompetitiveWins();
+            return this;
+        }
+
         public Player withQuickPlayGameData(){
             this.totalQuickPlayGames = parser.accessTotalQuickPlayGames();
             this.totalQuickPlayWins = parser.accessTotalQuickPlayWins();
             return new Player(this);
         }
-
     }
 
     private final String playerName;
@@ -53,6 +58,8 @@ public class Player {
     private final Integer prestige;
     private final Integer totalQuickPlayGames;
     private final Integer totalQuickPlayWins;
+    private final Integer totalCompetitiveGames;
+    private final Integer totalCompetitiveWins;
 
     public Player(Builder builder) {
         this.playerName = builder.playerName;
@@ -61,6 +68,8 @@ public class Player {
         this.ratingIcon = builder.ratingIcon;
         this.level = builder.level;
         this.prestige = builder.prestige;
+        this.totalCompetitiveGames = builder.totalCompetitiveGames;
+        this.totalCompetitiveWins = builder.totalCompetitiveWins;
         this.totalQuickPlayGames = builder.totalQuickPlayGames;
         this.totalQuickPlayWins = builder.totalQuickPlayWins;
     }
@@ -95,5 +104,13 @@ public class Player {
 
     public Integer accessTotalQuickPlayWins() {
         return totalQuickPlayWins;
+    }
+
+    public Integer accessTotalCompetitiveGames() {
+        return totalCompetitiveGames;
+    }
+
+    public Integer accessTotalCompetitiveWins() {
+        return totalCompetitiveWins;
     }
 }
