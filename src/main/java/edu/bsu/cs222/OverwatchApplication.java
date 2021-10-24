@@ -68,10 +68,17 @@ public class OverwatchApplication extends Application {
 
         @Override
         public void run() {
+            checkPlayerDataNotNull();
             setPlayerData();
             setPlayer();
             addPlayerIconToGUI();
             addRankingIconToGUI();
+        }
+
+        private void checkPlayerDataNotNull() {
+            if (application.playerData != null){
+                removeSearchHBoxChildren();
+            }
         }
 
         private void setPlayerData(){
@@ -101,6 +108,10 @@ public class OverwatchApplication extends Application {
         private void addRankingIconToGUI(){
             application.searchHBox.getChildren()
                     .add(application.loadRatingIcon());
+        }
+
+        private void removeSearchHBoxChildren(){
+            application.searchHBox.getChildren().remove(2,4);
         }
     }
 }
