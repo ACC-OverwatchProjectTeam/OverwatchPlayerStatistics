@@ -56,6 +56,13 @@ public class OverwatchApplication extends Application {
         return playerIconView;
     }
 
+    public ImageView loadRatingIcon(){
+        Image ratingIcon = new Image(player.accessRatingIcon());
+        ImageView ratingIconView = new ImageView();
+        ratingIconView.setImage(ratingIcon);
+        return ratingIconView;
+    }
+
     private final class InitializePlayerTask implements Runnable {
 
         @Override
@@ -78,6 +85,9 @@ public class OverwatchApplication extends Application {
 
             OverwatchApplication.this.searchHBox.getChildren()
                     .add(OverwatchApplication.this.loadPlayerIcon());
+
+            OverwatchApplication.this.searchHBox.getChildren()
+                    .add(OverwatchApplication.this.loadRatingIcon());
         }
     }
 }
