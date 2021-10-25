@@ -226,8 +226,6 @@ public class OverwatchApplication extends Application {
         private void removeIconChildren(){
             application.playerInfoBox.getChildren().remove(0);
             application.competitiveStatsVBox.getChildren().remove(0);
-            application.searchHBox.getChildren().remove(1,2);
-
         }
 
         private void setBoxesVisible() {
