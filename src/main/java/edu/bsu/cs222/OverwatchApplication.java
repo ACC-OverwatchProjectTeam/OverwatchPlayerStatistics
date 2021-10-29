@@ -12,36 +12,28 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-
 public class OverwatchApplication extends Application {
-    private final Runnable initializeApplicationTask = new InitializeApplicationTask();
-    private final VBox applicationContainerBox = new VBox();
-    private final HBox searchHBox = new HBox();
-    private final TextField searchInputField = new TextField("Enter your exact BattleTag");
-    private final Button searchButton = new Button("Search");
-    private final HBox playerInfoBox = new HBox();
-    private final TextField playerName = new TextField();
-    private final TextField playerLevel = new TextField();
-    private final ImageView playerIconView = new ImageView();
-    private final HBox gamemodeSelectionBox = new HBox();
-    private final Button competitiveButton = new Button("Competitive Stats");
-    private final VBox competitiveStatsVBox = new VBox();
-    private final ImageView ratingIconView = new ImageView();
-    private final TextField skillRating = new TextField();
-    private final TextField competitiveGamesPlayed = new TextField();
-    private final TextField competitiveGamesWon = new TextField();
-    private final Button quickPlayButton = new Button("QuickPlay Stats");
-    private final VBox quickPlayStatsVBox = new VBox();
-    private final TextField quickPlayGamesPlayed = new TextField();
-    private final TextField quickPlayGamesWon = new TextField();
-    private String playerData;
-    private Player player;
+    final VBox applicationContainerBox = new VBox();
+    final HBox playerInfoBox = new HBox();
+    final TextField playerName = new TextField();
+    final TextField playerLevel = new TextField();
+    final ImageView playerIconView = new ImageView();
+    final HBox gamemodeSelectionBox = new HBox();
+    final Button competitiveButton = new Button("Competitive Stats");
+    final VBox competitiveStatsVBox = new VBox();
+    final ImageView ratingIconView = new ImageView();
+    final TextField skillRating = new TextField();
+    final TextField competitiveGamesPlayed = new TextField();
+    final TextField competitiveGamesWon = new TextField();
+    final Button quickPlayButton = new Button("QuickPlay Stats");
+    final VBox quickPlayStatsVBox = new VBox();
+    final TextField quickPlayGamesPlayed = new TextField();
+    final TextField quickPlayGamesWon = new TextField();
+    String playerData;
+    Player player;
 
 
-    public OverwatchApplication(){
-        searchButton.setOnAction(event -> initializeApplicationTask.run());
+    public OverwatchApplication() {
         competitiveButton.setOnAction(event -> setCompetitiveInfo());
         quickPlayButton.setOnAction(event -> setQuickPlayInfo());
     }
@@ -54,31 +46,18 @@ public class OverwatchApplication extends Application {
     }
 
     private Scene createGUI() {
-        setupSearchHBox();
         setupPlayerInfoBox();
         setupGamemodeSelectionBox();
         setupCompetitiveStatsBox();
         setupQuickPlayStatsBox();
 
-        applicationContainerBox.getChildren().addAll(searchHBox, playerInfoBox, gamemodeSelectionBox,
+        OverwatchApplication application = OverwatchApplication.this;
+
+        applicationContainerBox.getChildren().addAll(new SearchHBox(application), playerInfoBox, gamemodeSelectionBox,
                 new HBox(competitiveStatsVBox, quickPlayStatsVBox));
         int sceneWidth = 1280;
         int sceneHeight = 720;
-        return new Scene(applicationContainerBox,sceneWidth,sceneHeight);
-    }
-
-    private void setupSearchHBox() {
-        searchHBox.getChildren().addAll(searchInputField, searchButton);
-        searchHBox.setAlignment(Pos.TOP_CENTER);
-        searchHBox.setMaxHeight(50);
-
-        searchInputField.setMinHeight(50);
-        searchInputField.setMinWidth(400);
-        searchInputField.setFont(Font.font(20));
-
-        searchButton.setMinHeight(50);
-        searchButton.setMinWidth(200);
-        searchButton.setFont(Font.font(20));
+        return new Scene(applicationContainerBox, sceneWidth, sceneHeight);
     }
 
     private void setupPlayerInfoBox() {
@@ -94,7 +73,7 @@ public class OverwatchApplication extends Application {
     }
 
     private void setupGamemodeSelectionBox() {
-        gamemodeSelectionBox.getChildren().addAll(competitiveButton,quickPlayButton);
+        gamemodeSelectionBox.getChildren().addAll(competitiveButton, quickPlayButton);
         gamemodeSelectionBox.setAlignment(Pos.CENTER);
         gamemodeSelectionBox.setMinWidth(1280);
         gamemodeSelectionBox.setVisible(false);
@@ -134,7 +113,7 @@ public class OverwatchApplication extends Application {
         quickPlayGamesWon.autosize();
     }
 
-    private ImageView loadPlayerIcon(){
+    private ImageView loadPlayerIcon() {
         Image playerIcon = new Image(player.accessPlayerIcon());
         ImageView playerIconView = new ImageView();
         playerIconView.setImage(playerIcon);
@@ -145,10 +124,10 @@ public class OverwatchApplication extends Application {
         Image ratingIcon = new Image(player.accessRatingIcon(), 100, 100, false, false);
         ImageView ratingIconView = new ImageView();
         ratingIconView.setImage(ratingIcon);
-        competitiveStatsVBox.getChildren().add(0,ratingIconView);
+        competitiveStatsVBox.getChildren().add(0, ratingIconView);
     }
 
-    private void setBasicPlayerInfo() {
+    public void setBasicPlayerInfo() {
         playerName.setText(player.accessPlayerName());
         playerLevel.setText(String.format("Lv.%d%d",
                 player.accessPrestige(),
@@ -156,8 +135,6 @@ public class OverwatchApplication extends Application {
         playerInfoBox.getChildren().add(0, loadPlayerIcon());
         loadRatingIcon();
     }
-
-
 
     private void setCompetitiveInfo() {
         competitiveStatsVBox.setAlignment(Pos.TOP_LEFT);
@@ -178,66 +155,5 @@ public class OverwatchApplication extends Application {
 
         competitiveStatsVBox.setVisible(false);
         quickPlayStatsVBox.setVisible(true);
-    }
-
-    private final class InitializeApplicationTask implements Runnable {
-        private final OverwatchApplication application = OverwatchApplication.this;
-
-        @Override
-        public void run() {
-            checkPlayerDataNotNull();
-            setPlayerData();
-            setPlayer();
-            callSetBasicPlayerInfo();
-            setBoxesVisible();
-
-        }
-
-        private void checkPlayerDataNotNull() {
-            if (application.playerData != null){
-                removeIconChildren();
-                setBoxesInvisible();
-            }
-        }
-
-        private void setPlayerData(){
-            SearchQuery searchQuery = new SearchQuery();
-            String playerBattleTag = searchInputField.getText();
-            try {
-                application.playerData = searchQuery.createURLFromSearchQuery(playerBattleTag);
-            } catch (URISyntaxException | InterruptedException | IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        private void setPlayer(){
-            application.player = new Player.Builder().parserSetup(playerData)
-                    .withPlayerData()
-                    .withPlayerRatingInfo()
-                    .withPlayerLevel()
-                    .withCompetitiveGameData()
-                    .withQuickPlayGameData();
-        }
-
-        private void callSetBasicPlayerInfo(){
-            application.setBasicPlayerInfo();
-        }
-
-        private void removeIconChildren(){
-            application.playerInfoBox.getChildren().remove(0);
-            application.competitiveStatsVBox.getChildren().remove(0);
-        }
-
-        private void setBoxesVisible() {
-            application.playerInfoBox.setVisible(true);
-            application.gamemodeSelectionBox.setVisible(true);
-        }
-
-        private void setBoxesInvisible() {
-            application.competitiveStatsVBox.setVisible(false);
-            application.quickPlayStatsVBox.setVisible(false);
-            application.gamemodeSelectionBox.setVisible(false);
-            application.playerInfoBox.setVisible(false);
-        }
     }
 }
