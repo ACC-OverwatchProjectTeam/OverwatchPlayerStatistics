@@ -69,4 +69,28 @@ public class Parser {
         JSONArray totalCompetitiveWins = path.read(dataStream);
         return Integer.parseInt(String.valueOf(totalCompetitiveWins.get(0)));
     }
+
+    public String accessAsheCriticalHitsAccuracy() {
+        JsonPath path = JsonPath.compile("$..competitiveStats.careerStats.ashe.combat.criticalHitsAccuracy");
+        JSONArray asheCriticalHitsAccuracy = path.read(dataStream);
+        return String.valueOf(asheCriticalHitsAccuracy.get(0));
+    }
+
+    public String accessAsheWeaponAccuracy() {
+        JsonPath path = JsonPath.compile("$..competitiveStats.careerStats.ashe.combat.weaponAccuracy");
+        JSONArray asheWeaponAccuracy = path.read(dataStream);
+        return String.valueOf(asheWeaponAccuracy.get(0));
+    }
+
+    public String accessAsheScopedAccuracy() {
+        JsonPath path = JsonPath.compile("$..competitiveStats.careerStats.ashe.heroSpecific.scopedAccuracy");
+        JSONArray asheScopedAccuracy = path.read(dataStream);
+        return String.valueOf(asheScopedAccuracy.get(0));
+    }
+
+    public String accessAsheScopedCriticalHitsAccuracy() {
+        JsonPath path = JsonPath.compile("$..competitiveStats.careerStats.ashe.heroSpecific.scopedCriticalHitsAccuracy");
+        JSONArray asheScopedCriticalHitsAccuracy = path.read(dataStream);
+        return String.valueOf(asheScopedCriticalHitsAccuracy.get(0));
+    }
 }
