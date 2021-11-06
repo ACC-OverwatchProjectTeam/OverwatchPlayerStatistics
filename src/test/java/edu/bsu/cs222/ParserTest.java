@@ -74,4 +74,24 @@ public class ParserTest {
     public void testAccessTotalCompetitiveWins(){
         Assertions.assertEquals(55, parser.accessTotalCompetitiveWins());
     }
+
+    @Test
+    void accessAsheCriticalHitsAccuracy() {
+        Assertions.assertEquals("16%", parser.accessAsheCriticalHitsAccuracy());
+    }
+
+    @Test
+    public void testAsheWeaponAccuracy(){
+        Assertions.assertEquals("49%", parser.accessAsheWeaponAccuracy());
+    }
+
+    @Test
+    void accessAsheScopedAccuracy() {
+        Assertions.assertEquals("49%", parser.accessAsheScopedAccuracy());
+    }
+
+    @Test
+    void accessAsheScopedCriticalHitsAccuracy() {
+        Assertions.assertEquals("16%", parser.accessAsheScopedCriticalHitsAccuracy());
+    }
 }
