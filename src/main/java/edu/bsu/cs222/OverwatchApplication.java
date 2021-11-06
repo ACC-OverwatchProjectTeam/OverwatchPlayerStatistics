@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class OverwatchApplication extends Application {
     final VBox applicationContainerBox = new VBox();
     private final SearchHBox searchHBox;
-    final PlayerInfoBox playerInfoBox;
+    private final PlayerInfoBox playerInfoBox;
     final HBox gamemodeSelectionBox = new HBox();
     final Button competitiveButton = new Button("Competitive Stats");
     final VBox competitiveStatsVBox = new VBox();
@@ -34,7 +34,7 @@ public class OverwatchApplication extends Application {
     public OverwatchApplication() {
         OverwatchApplication application = OverwatchApplication.this;
         this.playerInfoBox = new PlayerInfoBox(application);
-        this.searchHBox = new SearchHBox(application);
+        this.searchHBox = new SearchHBox(application, playerInfoBox);
         competitiveButton.setOnAction(event -> setCompetitiveInfo());
         quickPlayButton.setOnAction(event -> setQuickPlayInfo());
     }

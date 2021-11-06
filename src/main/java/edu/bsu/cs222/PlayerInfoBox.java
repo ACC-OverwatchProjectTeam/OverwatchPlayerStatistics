@@ -11,13 +11,12 @@ public class PlayerInfoBox extends HBox {
     private final OverwatchApplication application;
     private Text playerName;
     private Text playerLevel;
-    private ImageView playerIcon = new ImageView();
 
     public PlayerInfoBox(OverwatchApplication application) {
         this.application = application;
         setAlignment(Pos.CENTER);
         setVisible(false);
-
+        ImageView playerIcon = new ImageView();
         getChildren().addAll(playerIcon, createPlayerNameText(), createPlayerLevelText());
     }
 
@@ -40,10 +39,11 @@ public class PlayerInfoBox extends HBox {
         playerLevel.setText(String.format("Lv.%d%d",
                 application.player.accessPrestige(),
                 application.player.accessLevel()));
-        playerIcon = loadPlayerIcon();
+        getChildren().remove(0);
+        getChildren().add(0, loadPlayerIcon());
     }
 
-    private ImageView loadPlayerIcon() {
+    public ImageView loadPlayerIcon() {
         Image playerIcon = new Image(application.player.accessPlayerIcon());
         ImageView playerIconView = new ImageView();
         playerIconView.setImage(playerIcon);

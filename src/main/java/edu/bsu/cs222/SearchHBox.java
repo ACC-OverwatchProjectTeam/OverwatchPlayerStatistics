@@ -12,11 +12,13 @@ import java.net.URISyntaxException;
 public class SearchHBox extends HBox {
     public final TextField textField = createTextField();
     OverwatchApplication application;
+    PlayerInfoBox playerInfoBox;
 
-    public SearchHBox(OverwatchApplication application) {
+    public SearchHBox(OverwatchApplication application, PlayerInfoBox playerInfoBox) {
         this.application = application;
         setAlignment(Pos.CENTER);
         getChildren().addAll(new HBox(textField, createSearchButton()));
+        this.playerInfoBox = playerInfoBox;
     }
 
     private Button createSearchButton() {
@@ -77,12 +79,11 @@ public class SearchHBox extends HBox {
         }
 
         private void removeIconChildren(){
-            application.playerInfoBox.getChildren().remove(0);
             application.competitiveStatsVBox.getChildren().remove(0);
         }
 
         private void setBoxesVisible() {
-            application.playerInfoBox.setVisible(true);
+            searchHBox.playerInfoBox.setVisible(true);
             application.gamemodeSelectionBox.setVisible(true);
         }
 
@@ -90,7 +91,7 @@ public class SearchHBox extends HBox {
             application.competitiveStatsVBox.setVisible(false);
             application.quickPlayStatsVBox.setVisible(false);
             application.gamemodeSelectionBox.setVisible(false);
-            application.playerInfoBox.setVisible(false);
+            searchHBox.playerInfoBox.setVisible(false);
         }
     }
 }
