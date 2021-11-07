@@ -26,8 +26,4 @@ public class DataFormatter {
             return "Bronze";
         }
     }
-
-    public Integer convertStringToInteger(String integer) {
-        return Integer.parseInt(integer);
-    }
 }
