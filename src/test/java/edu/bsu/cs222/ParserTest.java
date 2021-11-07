@@ -104,4 +104,14 @@ public class ParserTest {
     void accessCassidyWeaponAccuracy() {
         Assertions.assertEquals("49%", parser.accessCassidyWeaponAccuracy());
     }
+
+    @Test
+    void accessHanzoCriticalHitsAccuracy() {
+        Assertions.assertEquals("7%", parser.accessHanzoCriticalHitsAccuracy());
+    }
+
+    @Test
+    void accessHanzoWeaponAccuracy() {
+        Assertions.assertEquals("29%", parser.accessHanzoWeaponAccuracy());
+    }
 }

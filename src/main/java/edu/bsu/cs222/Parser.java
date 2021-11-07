@@ -101,9 +101,21 @@ public class Parser {
     }
 
     public String accessCassidyWeaponAccuracy() {
-        JsonPath path = JsonPath.compile("$..competitiveStats.careerStats.ashe.combat.weaponAccuracy");
+        JsonPath path = JsonPath.compile("$..competitiveStats.careerStats.cassidy.combat.weaponAccuracy");
         JSONArray cassidyWeaponAccuracy = path.read(dataStream);
         return String.valueOf(cassidyWeaponAccuracy.get(0));
+    }
+
+    public String accessHanzoCriticalHitsAccuracy() {
+        JsonPath path = JsonPath.compile("$..competitiveStats.careerStats.hanzo.combat.criticalHitsAccuracy");
+        JSONArray hanzoCriticalHitsAccuracy = path.read(dataStream);
+        return String.valueOf(hanzoCriticalHitsAccuracy.get(0));
+    }
+
+    public String accessHanzoWeaponAccuracy() {
+        JsonPath path = JsonPath.compile("$..competitiveStats.careerStats.hanzo.combat.weaponAccuracy");
+        JSONArray hanzoWeaponAccuracy = path.read(dataStream);
+        return String.valueOf(hanzoWeaponAccuracy.get(0));
     }
 
 }
