@@ -28,6 +28,11 @@ public class ParserTest {
     }
 
     @Test
+    public void testAccessPrivateStatus(){
+        Assertions.assertEquals("false", parser.accessPrivateStatus());
+    }
+
+    @Test
     public void testAccessSkillRating() {
         Assertions.assertEquals(2487, parser.accessSkillRating());
     }

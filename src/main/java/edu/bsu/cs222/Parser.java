@@ -16,6 +16,12 @@ public class Parser {
         return playerName.get(0).toString();
     }
 
+    public String accessPrivateStatus() {
+        JsonPath path = JsonPath.compile("$..private");
+        JSONArray privateStatus = path.read(dataStream);
+        return privateStatus.get(0).toString();
+    }
+
     public String accessPlayerIcon() {
         JsonPath path = JsonPath.compile("$..icon");
         JSONArray playerIcon = path.read(dataStream);
