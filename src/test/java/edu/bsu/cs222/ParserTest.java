@@ -99,4 +99,24 @@ public class ParserTest {
     void accessAsheScopedCriticalHitsAccuracy() {
         Assertions.assertEquals("16%", parser.accessAsheScopedCriticalHitsAccuracy());
     }
+
+    @Test
+    void accessCassidyCriticalHitsAccuracy() {
+        Assertions.assertEquals("5%", parser.accessCassidyCriticalHitsAccuracy());
+    }
+
+    @Test
+    void accessCassidyWeaponAccuracy() {
+        Assertions.assertEquals("49%", parser.accessCassidyWeaponAccuracy());
+    }
+
+    @Test
+    void accessHanzoCriticalHitsAccuracy() {
+        Assertions.assertEquals("7%", parser.accessHanzoCriticalHitsAccuracy());
+    }
+
+    @Test
+    void accessHanzoWeaponAccuracy() {
+        Assertions.assertEquals("29%", parser.accessHanzoWeaponAccuracy());
+    }
 }
