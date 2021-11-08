@@ -11,14 +11,21 @@ import java.net.URISyntaxException;
 
 public class SearchHBox extends HBox {
     public final TextField textField = createTextField();
-    OverwatchApplication application;
+    private Player player;
+    private String playerData;
     PlayerInfoBox playerInfoBox;
+    GamemodeSelectionBox gamemodeSelectionBox;
+    GamemodeStatsHBox gamemodeStatsHBox;
 
-    public SearchHBox(OverwatchApplication application, PlayerInfoBox playerInfoBox) {
-        this.application = application;
+    public SearchHBox(Player player, String playerData, PlayerInfoBox playerInfoBox, GamemodeSelectionBox gamemodeSelectionBox, GamemodeStatsHBox gamemodeStatsHBox) {
+        this.player = player;
+        this.playerData = playerData;
+        this.gamemodeStatsHBox = gamemodeStatsHBox;
+        this.gamemodeSelectionBox = gamemodeSelectionBox;
+        this.playerInfoBox = playerInfoBox;
         setAlignment(Pos.CENTER);
         getChildren().addAll(new HBox(textField, createSearchButton()));
-        this.playerInfoBox = playerInfoBox;
+
     }
 
     private Button createSearchButton() {
@@ -45,11 +52,10 @@ public class SearchHBox extends HBox {
             setPlayer();
             callSetBasicPlayerInfo();
             setBoxesVisible();
-
         }
 
         private void checkPlayerDataNotNull() {
-            if (application.playerData != null){
+            if (playerData != null){
                 removeIconChildren();
                 setBoxesInvisible();
             }
@@ -59,14 +65,14 @@ public class SearchHBox extends HBox {
             SearchQuery searchQuery = new SearchQuery();
             String playerBattleTag = searchHBox.textField.getText();
             try {
-                application.playerData = searchQuery.createURLFromSearchQuery(playerBattleTag);
+                playerData = searchQuery.createURLFromSearchQuery(playerBattleTag);
             } catch (URISyntaxException | InterruptedException | IOException e) {
                 e.printStackTrace();
             }
         }
 
         private void setPlayer(){
-            application.player = new Player.Builder().parserSetup(application.playerData)
+            player = new Player.Builder().parserSetup(playerData)
                     .withPlayerData()
                     .withPlayerRatingInfo()
                     .withPlayerLevel()
@@ -75,22 +81,23 @@ public class SearchHBox extends HBox {
         }
 
         private void callSetBasicPlayerInfo(){
-            application.setBasicPlayerInfo();
+            playerInfoBox.modifyPlayerInfo(player);
+            gamemodeSelectionBox.boxSetup(player);
         }
 
         private void removeIconChildren(){
-            application.competitiveStatsVBox.getChildren().remove(0);
+            gamemodeStatsHBox.competitiveStatsVBox.getChildren().remove(0);
         }
 
         private void setBoxesVisible() {
             searchHBox.playerInfoBox.setVisible(true);
-            application.gamemodeSelectionBox.setVisible(true);
+            gamemodeSelectionBox.setVisible(true);
         }
 
         private void setBoxesInvisible() {
-            application.competitiveStatsVBox.setVisible(false);
-            application.quickPlayStatsVBox.setVisible(false);
-            application.gamemodeSelectionBox.setVisible(false);
+            gamemodeStatsHBox.competitiveStatsVBox.setVisible(false);
+            gamemodeStatsHBox.quickPlayStatsVBox.setVisible(false);
+            gamemodeSelectionBox.setVisible(false);
             searchHBox.playerInfoBox.setVisible(false);
         }
     }

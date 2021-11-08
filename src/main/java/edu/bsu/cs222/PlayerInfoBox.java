@@ -8,12 +8,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class PlayerInfoBox extends HBox {
-    private final OverwatchApplication application;
+    private Player player;
     private Text playerName;
     private Text playerLevel;
 
-    public PlayerInfoBox(OverwatchApplication application) {
-        this.application = application;
+    public PlayerInfoBox() {
         setAlignment(Pos.CENTER);
         setVisible(false);
         ImageView playerIcon = new ImageView();
@@ -34,17 +33,18 @@ public class PlayerInfoBox extends HBox {
         return playerLevel;
     }
 
-    public void modifyPlayerInfo() {
-        playerName.setText(application.player.accessPlayerName());
+    public void modifyPlayerInfo(Player player) {
+        this.player = player;
+        playerName.setText(this.player.accessPlayerName());
         playerLevel.setText(String.format("Lv.%d%d",
-                application.player.accessPrestige(),
-                application.player.accessLevel()));
+                player.accessPrestige(),
+                player.accessLevel()));
         getChildren().remove(0);
         getChildren().add(0, loadPlayerIcon());
     }
 
     public ImageView loadPlayerIcon() {
-        Image playerIcon = new Image(application.player.accessPlayerIcon());
+        Image playerIcon = new Image(player.accessPlayerIcon());
         ImageView playerIconView = new ImageView();
         playerIconView.setImage(playerIcon);
         return playerIconView;
