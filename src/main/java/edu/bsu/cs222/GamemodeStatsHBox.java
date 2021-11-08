@@ -21,6 +21,7 @@ public class GamemodeStatsHBox extends HBox {
         this.competitiveStatsVBox = new VBox();
         this.quickPlayStatsVBox = new VBox();
         getChildren().addAll(competitiveStatsVBox, quickPlayStatsVBox);
+        setAlignment(Pos.CENTER);
         setVisible(false);
 
         competitiveStatsVBox.getChildren().addAll(new ImageView(), skillRating, competitiveGamesPlayed,
@@ -29,7 +30,7 @@ public class GamemodeStatsHBox extends HBox {
     }
 
     private void setupCompetitiveStatsBox(Player player) {
-        competitiveStatsVBox.setAlignment(Pos.TOP_CENTER);
+        competitiveStatsVBox.setAlignment(Pos.CENTER);
         competitiveStatsVBox.setVisible(false);
 
         skillRating.setFont(Font.font(20));
@@ -53,7 +54,7 @@ public class GamemodeStatsHBox extends HBox {
 
     public void updateCompetitiveInformation(Player player) {
         setupCompetitiveStatsBox(player);
-        competitiveStatsVBox.setAlignment(Pos.TOP_LEFT);
+        competitiveStatsVBox.setAlignment(Pos.CENTER);
         competitiveStatsVBox.setMaxWidth(640);
         skillRating.setText(String.format("Average SR: %d", player.accessSkillRating()));
         competitiveGamesPlayed.setText(String.format("Played: %d", player.accessTotalCompetitiveGames()));
