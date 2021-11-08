@@ -107,7 +107,7 @@ public class ParserTest {
 
     @Test
     void accessCassidyWeaponAccuracy() {
-        Assertions.assertEquals("49%", parser.accessCassidyWeaponAccuracy());
+        Assertions.assertEquals("51%", parser.accessCassidyWeaponAccuracy());
     }
 
     @Test

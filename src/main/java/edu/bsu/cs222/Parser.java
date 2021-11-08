@@ -95,7 +95,7 @@ public class Parser {
     }
 
     public String accessAsheScopedCriticalHitsAccuracy() {
-        JsonPath path = JsonPath.compile("$..competitiveStats.careerStats.cassidy.heroSpecific.scopedCriticalHitsAccuracy");
+        JsonPath path = JsonPath.compile("$..competitiveStats.careerStats.ashe.heroSpecific.scopedCriticalHitsAccuracy");
         JSONArray asheScopedCriticalHitsAccuracy = path.read(dataStream);
         return String.valueOf(asheScopedCriticalHitsAccuracy.get(0));
     }
