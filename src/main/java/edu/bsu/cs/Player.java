@@ -1,4 +1,4 @@
-package edu.bsu.cs222;
+package edu.bsu.cs;
 
 public class Player {
     public static final class Builder {

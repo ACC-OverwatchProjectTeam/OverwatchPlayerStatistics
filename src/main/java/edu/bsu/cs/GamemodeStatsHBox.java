@@ -1,4 +1,4 @@
-package edu.bsu.cs222;
+package edu.bsu.cs;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.TextField;

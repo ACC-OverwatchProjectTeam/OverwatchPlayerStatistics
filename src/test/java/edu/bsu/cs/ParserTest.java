@@ -1,4 +1,4 @@
-package edu.bsu.cs222;
+package edu.bsu.cs;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
