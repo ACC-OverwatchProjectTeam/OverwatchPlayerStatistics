@@ -36,7 +36,7 @@ public class PlayerInfoBox extends HBox {
     public void modifyPlayerInfo(Player player) {
         this.player = player;
         playerName.setText(this.player.accessPlayerName());
-        playerLevel.setText(String.format("Lv.%d%d",
+        playerLevel.setText(String.format(" Lv.%d%d",
                 player.accessPrestige(),
                 player.accessLevel()));
         getChildren().remove(0);

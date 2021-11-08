@@ -19,6 +19,7 @@ public class GamemodeSelectionBox extends HBox {
 
     public void boxSetup(Player player) {
         this.player = player;
+        getChildren().clear();
         getChildren().addAll(competitiveButton, quickPlayButton);
         setAlignment(Pos.CENTER);
         setMinWidth(1280);

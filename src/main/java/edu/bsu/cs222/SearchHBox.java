@@ -56,7 +56,6 @@ public class SearchHBox extends HBox {
 
         private void checkPlayerDataNotNull() {
             if (playerData != null){
-                removeIconChildren();
                 setBoxesInvisible();
             }
         }
@@ -83,10 +82,6 @@ public class SearchHBox extends HBox {
         private void callSetBasicPlayerInfo(){
             playerInfoBox.modifyPlayerInfo(player);
             gamemodeSelectionBox.boxSetup(player);
-        }
-
-        private void removeIconChildren(){
-            gamemodeStatsHBox.competitiveStatsVBox.getChildren().remove(0);
         }
 
         private void setBoxesVisible() {
