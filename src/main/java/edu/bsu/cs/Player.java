@@ -14,38 +14,46 @@ public class Player {
         private Integer totalCompetitiveWins;
         private Parser parser;
 
-        public Builder parserSetup(String dataStream){
+        public Builder parserSetup(String dataStream) {
             this.parser = new Parser(dataStream);
             return this;
         }
 
-        public Builder withPlayerData(){
+        public Builder withPlayerData() {
             this.playerName = parser.accessUsername();
             this.playerIcon = parser.accessPlayerIcon();
             return this;
         }
 
-        public Builder withPlayerRatingInfo(){
+        public Boolean accessPrivacyStatus() {
+            return parser.accessPrivateStatus();
+        }
+
+        public Builder withPlayerRatingInfo() {
             this.skillRating = parser.accessSkillRating();
             this.ratingIcon = parser.accessRatingIcon();
             return this;
         }
 
-        public Builder withPlayerLevel(){
+        public Builder withPlayerLevel() {
             this.level = parser.accessLevel();
             this.prestige = parser.accessPrestige();
             return this;
         }
 
-        public Builder withCompetitiveGameData(){
+        public Builder withCompetitiveGameData() {
             this.totalCompetitiveGames = parser.accessTotalCompetitiveGames();
             this.totalCompetitiveWins = parser.accessTotalCompetitiveWins();
             return this;
         }
 
-        public Player withQuickPlayGameData(){
+        public Builder withQuickPlayGameData() {
             this.totalQuickPlayGames = parser.accessTotalQuickPlayGames();
             this.totalQuickPlayWins = parser.accessTotalQuickPlayWins();
+            return this;
+        }
+
+        public Player returnPlayer() {
             return new Player(this);
         }
     }

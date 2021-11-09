@@ -25,7 +25,6 @@ public class SearchHBox extends HBox {
         this.playerInfoBox = playerInfoBox;
         setAlignment(Pos.CENTER);
         getChildren().addAll(new HBox(textField, createSearchButton()));
-
     }
 
     private Button createSearchButton() {
@@ -60,7 +59,7 @@ public class SearchHBox extends HBox {
             }
         }
 
-        private void setPlayerData(){
+        private void setPlayerData() {
             SearchQuery searchQuery = new SearchQuery();
             String playerBattleTag = searchHBox.textField.getText();
             try {
@@ -70,16 +69,25 @@ public class SearchHBox extends HBox {
             }
         }
 
-        private void setPlayer(){
-            player = new Player.Builder().parserSetup(playerData)
-                    .withPlayerData()
-                    .withPlayerRatingInfo()
-                    .withPlayerLevel()
-                    .withCompetitiveGameData()
-                    .withQuickPlayGameData();
+        private void setPlayer() {
+            if (new Player.Builder().parserSetup(playerData).accessPrivacyStatus()) {
+                player = new Player.Builder()
+                        .parserSetup(playerData)
+                        .withPlayerData()
+                        .withPlayerLevel()
+                        .returnPlayer();
+            } else {
+                player = new Player.Builder().parserSetup(playerData)
+                        .withPlayerData()
+                        .withPlayerRatingInfo()
+                        .withPlayerLevel()
+                        .withCompetitiveGameData()
+                        .withQuickPlayGameData()
+                        .returnPlayer();
+            }
         }
 
-        private void callSetBasicPlayerInfo(){
+        private void callSetBasicPlayerInfo() {
             playerInfoBox.modifyPlayerInfo(player);
             gamemodeSelectionBox.boxSetup(player);
         }
