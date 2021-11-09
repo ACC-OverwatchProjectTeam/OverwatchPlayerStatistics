@@ -29,7 +29,7 @@ public class ParserTest {
 
     @Test
     public void testAccessPrivateStatus(){
-        Assertions.assertEquals("false", parser.accessPrivateStatus());
+        Assertions.assertEquals(false, parser.accessPrivateStatus());
     }
 
     @Test

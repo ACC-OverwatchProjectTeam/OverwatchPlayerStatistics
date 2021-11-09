@@ -2,6 +2,7 @@ package edu.bsu.cs;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 
@@ -20,7 +21,7 @@ public class GamemodeSelectionBox extends HBox {
     public void boxSetup(Player player) {
         this.player = player;
         getChildren().clear();
-        getChildren().addAll(competitiveButton, quickPlayButton);
+        addElements();
         setAlignment(Pos.CENTER);
         setMinWidth(1280);
         setVisible(false);
@@ -30,5 +31,13 @@ public class GamemodeSelectionBox extends HBox {
 
         quickPlayButton.setMinSize(200, 75);
         quickPlayButton.setFont(Font.font(20));
+    }
+
+    private void addElements() {
+        if (player.accessPrivacySetting()) {
+            getChildren().addAll(new Label("This profile is private. Rip..."));
+        }else {
+            getChildren().addAll(competitiveButton, quickPlayButton);
+        }
     }
 }

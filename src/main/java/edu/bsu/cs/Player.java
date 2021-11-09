@@ -4,6 +4,7 @@ public class Player {
     public static final class Builder {
         private String playerName;
         private String playerIcon;
+        private Boolean privacySetting;
         private Integer skillRating;
         private String ratingIcon;
         private Integer level;
@@ -27,6 +28,11 @@ public class Player {
 
         public Boolean accessPrivacyStatus() {
             return parser.accessPrivateStatus();
+        }
+
+        public Builder withPrivacyStatus() {
+            this.privacySetting = parser.accessPrivateStatus();
+            return this;
         }
 
         public Builder withPlayerRatingInfo() {
@@ -60,6 +66,7 @@ public class Player {
 
     private final String playerName;
     private final String playerIcon;
+    private final Boolean privacySetting;
     private final Integer skillRating;
     private final String ratingIcon;
     private final Integer level;
@@ -72,6 +79,7 @@ public class Player {
     public Player(Builder builder) {
         this.playerName = builder.playerName;
         this.playerIcon = builder.playerIcon;
+        this.privacySetting = builder.privacySetting;
         this.skillRating = builder.skillRating;
         this.ratingIcon = builder.ratingIcon;
         this.level = builder.level;
@@ -88,6 +96,10 @@ public class Player {
 
     public String accessPlayerIcon() {
         return playerIcon;
+    }
+
+    public Boolean accessPrivacySetting() {
+        return privacySetting;
     }
 
     public Integer accessSkillRating() {

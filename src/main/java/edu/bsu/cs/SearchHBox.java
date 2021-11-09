@@ -74,11 +74,13 @@ public class SearchHBox extends HBox {
                 player = new Player.Builder()
                         .parserSetup(playerData)
                         .withPlayerData()
+                        .withPrivacyStatus()
                         .withPlayerLevel()
                         .returnPlayer();
             } else {
                 player = new Player.Builder().parserSetup(playerData)
                         .withPlayerData()
+                        .withPrivacyStatus()
                         .withPlayerRatingInfo()
                         .withPlayerLevel()
                         .withCompetitiveGameData()
