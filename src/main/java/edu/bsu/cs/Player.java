@@ -1,6 +1,5 @@
 package edu.bsu.cs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -16,7 +15,7 @@ public class Player {
         private int totalQuickPlayWins;
         private int totalCompetitiveGames;
         private int totalCompetitiveWins;
-        private List<Hero> competitiveHeroes = new ArrayList<>();
+        private List<Hero> competitiveHeroes;
         private Parser parser;
 
         public Builder parserSetup(String dataStream) {
@@ -83,6 +82,7 @@ public class Player {
     private final int prestige;
     private final int totalQuickPlayGames;
     private final int totalQuickPlayWins;
+    private final List<Hero> competitiveHeroes;
     private final int totalCompetitiveGames;
     private final int totalCompetitiveWins;
 
@@ -94,6 +94,7 @@ public class Player {
         this.ratingIcon = builder.ratingIcon;
         this.level = builder.level;
         this.prestige = builder.prestige;
+        this.competitiveHeroes = builder.competitiveHeroes;
         this.totalCompetitiveGames = builder.totalCompetitiveGames;
         this.totalCompetitiveWins = builder.totalCompetitiveWins;
         this.totalQuickPlayGames = builder.totalQuickPlayGames;
@@ -134,6 +135,10 @@ public class Player {
 
     public Integer accessTotalQuickPlayWins() {
         return totalQuickPlayWins;
+    }
+
+    public List<Hero> accessCompetitiveHeroes() {
+        return competitiveHeroes;
     }
 
     public Integer accessTotalCompetitiveGames() {
