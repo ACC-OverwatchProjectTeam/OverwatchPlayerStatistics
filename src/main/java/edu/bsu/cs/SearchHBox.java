@@ -60,7 +60,7 @@ public class SearchHBox extends HBox {
         }
 
         private void setPlayerData() {
-            SearchQuery searchQuery = new SearchQuery();
+            QueryURLMaker searchQuery = new QueryURLMaker();
             String playerBattleTag = searchHBox.textField.getText();
             try {
                 playerData = searchQuery.createURLFromSearchQuery(playerBattleTag);
