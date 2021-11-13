@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParserTest {
     private final InputStream dataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("LoupineData.txt");
@@ -81,7 +83,7 @@ public class ParserTest {
     }
 
     @Test
-    void accessAsheCriticalHitsAccuracy() {
+    public void accessAsheCriticalHitsAccuracy() {
         Assertions.assertEquals("16%", parser.accessAsheCriticalHitsAccuracy());
     }
 
@@ -91,32 +93,44 @@ public class ParserTest {
     }
 
     @Test
-    void accessAsheScopedAccuracy() {
+    public void accessAsheScopedAccuracy() {
         Assertions.assertEquals("49%", parser.accessAsheScopedAccuracy());
     }
 
     @Test
-    void accessAsheScopedCriticalHitsAccuracy() {
+    public void accessAsheScopedCriticalHitsAccuracy() {
         Assertions.assertEquals("16%", parser.accessAsheScopedCriticalHitsAccuracy());
     }
 
     @Test
-    void accessCassidyCriticalHitsAccuracy() {
+    public void accessCassidyCriticalHitsAccuracy() {
         Assertions.assertEquals("5%", parser.accessCassidyCriticalHitsAccuracy());
     }
 
     @Test
-    void accessCassidyWeaponAccuracy() {
+    public void accessCassidyWeaponAccuracy() {
         Assertions.assertEquals("51%", parser.accessCassidyWeaponAccuracy());
     }
 
     @Test
-    void accessHanzoCriticalHitsAccuracy() {
+    public void accessHanzoCriticalHitsAccuracy() {
         Assertions.assertEquals("7%", parser.accessHanzoCriticalHitsAccuracy());
     }
 
     @Test
-    void accessHanzoWeaponAccuracy() {
+    public void accessHanzoWeaponAccuracy() {
         Assertions.assertEquals("29%", parser.accessHanzoWeaponAccuracy());
+    }
+
+    @Test
+    public void testReadHeroData() {
+        List<String> heroNames = new ArrayList<>(
+                List.of("ana", "ashe", "baptiste", "bastion", "brigitte", "cassidy", "d.va",
+                        "doomfist", "echo", "genji", "hanzo", "junkrat", "lucio", "mei", "mercy",
+                        "moira", "orisa", "pharah", "reaper", "reinhardt", "roadhog", "sigma",
+                        "soldier76", "sombra", "symmetra", "torbjorn", "tracer", "widowmaker",
+                        "winston", "wreckingBall", "zarya", "zenyatta"));
+        Assertions.assertEquals("[49%, 51%, 29%, 33%, 46%, 17%, 43%]",
+                parser.accessCompetitiveHeroWeaponAccuracies(heroNames));
     }
 }

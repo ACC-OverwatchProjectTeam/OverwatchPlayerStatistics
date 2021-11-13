@@ -3,6 +3,9 @@ package edu.bsu.cs;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Parser {
     private final String dataStream;
 
@@ -124,4 +127,16 @@ public class Parser {
         return String.valueOf(hanzoWeaponAccuracy.get(0));
     }
 
+    public String accessCompetitiveHeroWeaponAccuracies(List<String> heroNames) {
+        List<String> weaponAccuracies = new ArrayList<>();
+        for(String name: heroNames){
+            try{
+                JsonPath path = JsonPath.compile(String.format("$..competitiveStats.careerStats.%s.combat.weaponAccuracy", name));
+                JSONArray weaponAccuracy = path.read(dataStream);
+                weaponAccuracies.add(String.valueOf(weaponAccuracy.get(0)));
+            }catch(Exception ignored) {
+            }
+        }
+        return weaponAccuracies.toString();
+    }
 }
