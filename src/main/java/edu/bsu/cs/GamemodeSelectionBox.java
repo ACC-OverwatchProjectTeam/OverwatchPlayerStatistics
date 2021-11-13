@@ -35,9 +35,15 @@ public class GamemodeSelectionBox extends HBox {
 
     private void addElements() {
         if (player.accessPrivacySetting()) {
-            getChildren().addAll(new Label("This profile is private. Rip..."));
+            getChildren().add(createProfileStatusLabel());
         }else {
             getChildren().addAll(competitiveButton, quickPlayButton);
         }
+    }
+
+    private Label createProfileStatusLabel() {
+        Label privateProfileLabel = new Label("This profile is private. No further data can be found...");
+        privateProfileLabel.setFont(Font.font(20));
+        return privateProfileLabel;
     }
 }
