@@ -133,4 +133,22 @@ public class ParserTest {
         Assertions.assertEquals("[49%, 51%, 29%, 33%, 46%, 17%, 43%]",
                 parser.accessCompetitiveHeroWeaponAccuracies(heroNames));
     }
+
+    @Test
+    public void testAccessTopCompetitiveHeroes() {
+        Assertions.assertEquals("{ashe={timePlayed=06:11, " +
+                "gamesWon=0, winPercentage=100, weaponAccuracy=49, eliminationsPerLife=6.33, " +
+                "multiKillBest=0, objectiveKills=7}, cassidy={timePlayed=14:26, gamesWon=1, " +
+                "winPercentage=68, weaponAccuracy=51, eliminationsPerLife=1.53, multiKillBest=0, " +
+                "objectiveKills=8}, hanzo={timePlayed=10:38, gamesWon=1, winPercentage=48, " +
+                "weaponAccuracy=29, eliminationsPerLife=1.2, multiKillBest=0, objectiveKills=0}, " +
+                "reaper={timePlayed=03:25, gamesWon=0, winPercentage=0, weaponAccuracy=33, " +
+                "eliminationsPerLife=2.33, multiKillBest=3, objectiveKills=3}, " +
+                "soldier76={timePlayed=04:35, gamesWon=0, winPercentage=0, weaponAccuracy=46, " +
+                "eliminationsPerLife=2.2, multiKillBest=0, objectiveKills=2}, " +
+                "symmetra={timePlayed=07:46, gamesWon=0, winPercentage=0, weaponAccuracy=17, " +
+                "eliminationsPerLife=6, multiKillBest=3, objectiveKills=8}, " +
+                "tracer={timePlayed=06:21, gamesWon=0, winPercentage=0, weaponAccuracy=43, " +
+                "eliminationsPerLife=3, multiKillBest=0, objectiveKills=4}}", parser.accessTopCompetitiveHeroes());
+    }
 }

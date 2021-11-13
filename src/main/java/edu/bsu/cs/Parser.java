@@ -139,4 +139,10 @@ public class Parser {
         }
         return weaponAccuracies.toString();
     }
+
+    public String accessTopCompetitiveHeroes() {
+        JsonPath path = JsonPath.compile("$..competitiveStats.topHeroes");
+        JSONArray topCompetitiveHeroesData = path.read(dataStream);
+        return String.valueOf(topCompetitiveHeroesData.get(0));
+    }
 }
