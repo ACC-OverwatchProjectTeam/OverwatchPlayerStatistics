@@ -125,7 +125,7 @@ public class ParserTest {
     @Test
     public void testReadHeroData() {
         List<String> heroNames = new ArrayList<>(
-                List.of("ana", "ashe", "baptiste", "bastion", "brigitte", "cassidy", "d.va",
+                List.of("ana", "ashe", "baptiste", "bastion", "brigitte", "cassidy", "dVa",
                         "doomfist", "echo", "genji", "hanzo", "junkrat", "lucio", "mei", "mercy",
                         "moira", "orisa", "pharah", "reaper", "reinhardt", "roadhog", "sigma",
                         "soldier76", "sombra", "symmetra", "torbjorn", "tracer", "widowmaker",
