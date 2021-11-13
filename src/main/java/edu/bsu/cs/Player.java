@@ -113,7 +113,7 @@ public class Player {
         return privacySetting;
     }
 
-    public Integer accessSkillRating() {
+    public int accessSkillRating() {
         return skillRating;
     }
 
@@ -121,19 +121,19 @@ public class Player {
         return ratingIcon;
     }
 
-    public Integer accessLevel() {
+    public int accessLevel() {
         return level;
     }
 
-    public Integer accessPrestige() {
+    public int accessPrestige() {
         return prestige;
     }
 
-    public Integer accessTotalQuickPlayGames() {
+    public int accessTotalQuickPlayGames() {
         return totalQuickPlayGames;
     }
 
-    public Integer accessTotalQuickPlayWins() {
+    public int accessTotalQuickPlayWins() {
         return totalQuickPlayWins;
     }
 
@@ -141,11 +141,11 @@ public class Player {
         return competitiveHeroes;
     }
 
-    public Integer accessTotalCompetitiveGames() {
+    public int accessTotalCompetitiveGames() {
         return totalCompetitiveGames;
     }
 
-    public Integer accessTotalCompetitiveWins() {
+    public int accessTotalCompetitiveWins() {
         return totalCompetitiveWins;
     }
 }

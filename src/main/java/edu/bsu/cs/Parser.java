@@ -19,7 +19,7 @@ public class Parser {
         return playerName.get(0).toString();
     }
 
-    public Boolean accessPrivateStatus() {
+    public boolean accessPrivateStatus() {
         JsonPath path = JsonPath.compile("$..private");
         JSONArray privateStatus = path.read(dataStream);
         return Boolean.parseBoolean(privateStatus.get(0).toString());
