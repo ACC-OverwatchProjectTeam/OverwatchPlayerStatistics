@@ -1,18 +1,22 @@
 package edu.bsu.cs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
     public static final class Builder {
         private String playerName;
         private String playerIcon;
-        private Boolean privacySetting;
-        private Integer skillRating;
+        private boolean privacySetting;
+        private int skillRating;
         private String ratingIcon;
-        private Integer level;
-        private Integer prestige;
-        private Integer totalQuickPlayGames;
-        private Integer totalQuickPlayWins;
-        private Integer totalCompetitiveGames;
-        private Integer totalCompetitiveWins;
+        private int level;
+        private int prestige;
+        private int totalQuickPlayGames;
+        private int totalQuickPlayWins;
+        private int totalCompetitiveGames;
+        private int totalCompetitiveWins;
+        private List<Hero> competitiveHeroes = new ArrayList<>();
         private Parser parser;
 
         public Builder parserSetup(String dataStream) {
@@ -53,6 +57,12 @@ public class Player {
             return this;
         }
 
+        public Builder withCompetitiveHeroes() {
+            HeroListMaker heroListMaker = new HeroListMaker(parser);
+            this.competitiveHeroes = heroListMaker.heroList;
+            return this;
+        }
+
         public Builder withQuickPlayGameData() {
             this.totalQuickPlayGames = parser.accessTotalQuickPlayGames();
             this.totalQuickPlayWins = parser.accessTotalQuickPlayWins();
@@ -66,15 +76,15 @@ public class Player {
 
     private final String playerName;
     private final String playerIcon;
-    private final Boolean privacySetting;
-    private final Integer skillRating;
+    private final boolean privacySetting;
+    private final int skillRating;
     private final String ratingIcon;
-    private final Integer level;
-    private final Integer prestige;
-    private final Integer totalQuickPlayGames;
-    private final Integer totalQuickPlayWins;
-    private final Integer totalCompetitiveGames;
-    private final Integer totalCompetitiveWins;
+    private final int level;
+    private final int prestige;
+    private final int totalQuickPlayGames;
+    private final int totalQuickPlayWins;
+    private final int totalCompetitiveGames;
+    private final int totalCompetitiveWins;
 
     public Player(Builder builder) {
         this.playerName = builder.playerName;
