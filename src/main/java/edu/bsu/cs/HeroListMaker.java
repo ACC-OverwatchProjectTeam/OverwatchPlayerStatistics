@@ -5,7 +5,7 @@ import java.util.List;
 
 public class HeroListMaker {
     private final Parser parser;
-    public List<Hero> heroList = new ArrayList<>();
+    private final List<Hero> competitiveHeroList = new ArrayList<>();
 
     public HeroListMaker(Parser parser){
         this.parser = parser;
@@ -19,7 +19,11 @@ public class HeroListMaker {
         String[] competitiveHeroesArray = competitiveHeroesData.split("},");
         for(String heroData: competitiveHeroesArray){
             Hero hero = new Hero.Builder().withHeroData(heroData);
-            heroList.add(hero);
+            competitiveHeroList.add(hero);
         }
+    }
+
+    public List<Hero> accessCompetitiveHeroList() {
+        return List.copyOf(competitiveHeroList);
     }
 }

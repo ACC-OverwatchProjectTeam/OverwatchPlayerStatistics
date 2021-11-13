@@ -59,7 +59,7 @@ public class Player {
 
         public Builder withCompetitiveHeroes() {
             HeroListMaker heroListMaker = new HeroListMaker(parser);
-            this.competitiveHeroes = heroListMaker.heroList;
+            this.competitiveHeroes = heroListMaker.accessCompetitiveHeroList();
             return this;
         }
 

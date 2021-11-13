@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HeroListMakerTest {
     private final InputStream dataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("LoupineData.txt");
@@ -25,10 +23,10 @@ public class HeroListMakerTest {
     }
 
     @Test
-    public void testCreateCompetitiveHeroesList() {
+    public void testAccessCompetitiveHeroList() {
         HeroListMaker heroListMaker = new HeroListMaker(parser);
         StringBuilder heroNames = new StringBuilder();
-        for(Hero hero: heroListMaker.heroList){
+        for(Hero hero: heroListMaker.accessCompetitiveHeroList()){
             heroNames.append(hero.accessHeroName());
         }
         Assertions.assertEquals("ashe cassidy hanzo reaper soldier76 symmetra tracer",
