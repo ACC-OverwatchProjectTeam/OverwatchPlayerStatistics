@@ -27,9 +27,8 @@ public class HeroListMakerTest {
     @Test
     public void testCreateCompetitiveHeroesList() {
         HeroListMaker heroListMaker = new HeroListMaker(parser);
-        List<Hero> heroList = new ArrayList<>(heroListMaker.heroList);
         StringBuilder heroNames = new StringBuilder();
-        for(Hero hero: heroList){
+        for(Hero hero: heroListMaker.heroList){
             heroNames.append(hero.accessHeroName());
         }
         Assertions.assertEquals("ashe cassidy hanzo reaper soldier76 symmetra tracer",
