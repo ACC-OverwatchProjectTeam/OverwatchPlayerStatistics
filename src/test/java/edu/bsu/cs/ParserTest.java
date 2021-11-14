@@ -31,7 +31,7 @@ public class ParserTest {
 
     @Test
     public void testAccessPrivateStatus(){
-        Assertions.assertEquals(false, parser.accessPrivateStatus());
+        Assertions.assertFalse(parser.accessPrivateStatus());
     }
 
     @Test
@@ -149,6 +149,6 @@ public class ParserTest {
                 "symmetra={timePlayed=07:46, gamesWon=0, winPercentage=0, weaponAccuracy=17, " +
                 "eliminationsPerLife=6, multiKillBest=3, objectiveKills=8}, " +
                 "tracer={timePlayed=06:21, gamesWon=0, winPercentage=0, weaponAccuracy=43, " +
-                "eliminationsPerLife=3, multiKillBest=0, objectiveKills=4}}", parser.accessTopCompetitiveHeroes());
+                "eliminationsPerLife=3, multiKillBest=0, objectiveKills=4}}", parser.accessTopCompetitiveHeroesData());
     }
 }
