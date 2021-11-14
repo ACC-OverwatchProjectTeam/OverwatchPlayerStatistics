@@ -4,40 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeroListMaker {
-    private final Parser parser;
-    private final List<Hero> competitiveHeroList = new ArrayList<>();
-    private final List<Hero> quickPlayHeroList = new ArrayList<>();
+    private final List<Hero> competitiveHeroList;
+    private final List<Hero> quickPlayHeroList;
 
     public HeroListMaker(Parser parser){
-        this.parser = parser;
-        createCompetitiveHeroList();
-        createQuickPlayHeroList();
+        parser.accessTopCompetitiveHeroesData();
+        this.competitiveHeroList = new ArrayList<>(createHeroList(parser.accessTopCompetitiveHeroesData()));
+        this.quickPlayHeroList = new ArrayList<>(createHeroList(parser.accessTopQuickPlayHeroesData()));
     }
 
-    private void createQuickPlayHeroList() {
-        String quickPlayHeroesData = parser.accessTopQuickPlayHeroesData();
-        quickPlayHeroesData = quickPlayHeroesData.substring(1, quickPlayHeroesData.length() - 2);
+    private List<Hero> createHeroList(String heroesData) {
+        heroesData = heroesData.substring(1, heroesData.length() - 2);
+        String[] heroesArray = heroesData.split("},");
 
-        String[] quickPlayHeroesArray = quickPlayHeroesData.split("},");
-        for(String heroData: quickPlayHeroesArray){
+        List<Hero> heroList = new ArrayList<>();
+        for(String heroData: heroesArray){
             Hero hero = new Hero.Builder().withHeroData(heroData);
-            quickPlayHeroList.add(hero);
+            heroList.add(hero);
         }
+        return heroList;
     }
 
     public List<Hero> accessQuickPlayHeroList() {
         return List.copyOf(quickPlayHeroList);
-    }
-
-    private void createCompetitiveHeroList() {
-        String competitiveHeroesData = parser.accessTopCompetitiveHeroesData();
-        competitiveHeroesData = competitiveHeroesData.substring(1, competitiveHeroesData.length() - 2);
-
-        String[] competitiveHeroesArray = competitiveHeroesData.split("},");
-        for(String heroData: competitiveHeroesArray){
-            Hero hero = new Hero.Builder().withHeroData(heroData);
-            competitiveHeroList.add(hero);
-        }
     }
 
     public List<Hero> accessCompetitiveHeroList() {
