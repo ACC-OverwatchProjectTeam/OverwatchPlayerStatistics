@@ -9,29 +9,30 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class GamemodeStatsHBox extends HBox {
-    public final VBox competitiveStatsVBox;
+    public final VBox competitiveStatsVBox = new VBox();
     private final TextField skillRating = new TextField();
     private final TextField competitiveGamesPlayed = new TextField();
     private final TextField competitiveGamesWon = new TextField();
-    public final VBox quickPlayStatsVBox;
+    public final VBox quickPlayStatsVBox = new VBox();
     private final TextField quickPlayGamesPlayed = new TextField();
     private final TextField quickPlayGamesWon = new TextField();
+    private final HeroStatsBox heroBox;
 
-    public GamemodeStatsHBox() {
-        this.competitiveStatsVBox = new VBox();
-        this.quickPlayStatsVBox = new VBox();
+    public GamemodeStatsHBox(HeroStatsBox heroBox) {
+        this.heroBox = heroBox;
         getChildren().addAll(competitiveStatsVBox, quickPlayStatsVBox);
         setAlignment(Pos.CENTER);
+        competitiveStatsVBox.setMaxWidth(640);
+        quickPlayStatsVBox.setMaxWidth(1280);
         setVisible(false);
-
-        competitiveStatsVBox.getChildren().addAll(new ImageView(), skillRating, competitiveGamesPlayed,
-                competitiveGamesWon);
-        quickPlayStatsVBox.getChildren().addAll(quickPlayGamesPlayed, quickPlayGamesWon);
     }
 
+
     private void setupCompetitiveStatsBox(Player player) {
+        competitiveStatsVBox.getChildren().clear();
+        competitiveStatsVBox.getChildren().addAll(new ImageView(), skillRating, competitiveGamesPlayed,
+            competitiveGamesWon);
         competitiveStatsVBox.setAlignment(Pos.CENTER);
-        competitiveStatsVBox.setVisible(false);
 
         skillRating.setFont(Font.font(20));
         skillRating.autosize();
@@ -54,20 +55,33 @@ public class GamemodeStatsHBox extends HBox {
 
     public void updateCompetitiveInformation(Player player) {
         setupCompetitiveStatsBox(player);
-        competitiveStatsVBox.setAlignment(Pos.CENTER);
-        competitiveStatsVBox.setMaxWidth(640);
+
         skillRating.setText(String.format("Average SR: %d", player.accessSkillRating()));
         competitiveGamesPlayed.setText(String.format("Played: %d", player.accessTotalCompetitiveGames()));
         competitiveGamesWon.setText(String.format("Won: %d", player.accessTotalCompetitiveWins()));
+
+        addCompetitiveHeroSelection(player);
 
         setVisible(true);
         quickPlayStatsVBox.setVisible(false);
         competitiveStatsVBox.setVisible(true);
     }
 
+    private void addCompetitiveHeroSelection(Player player) {
+        HeroChoiceBox competitiveHeroSelection = new HeroChoiceBox(player.accessCompetitiveHeroes());
+        competitiveHeroSelection.setMaxWidth(640);
+        competitiveHeroSelection.setOnAction(event ->
+                heroBox.updateHeroInfo(competitiveHeroSelection.getSelectionModel().getSelectedIndex(),
+                        player.accessCompetitiveHeroes()));
+        competitiveStatsVBox.getChildren().add(competitiveHeroSelection);
+    }
+
     private void setupQuickPlayStatsBox() {
-        quickPlayStatsVBox.setAlignment(Pos.TOP_RIGHT);
-        quickPlayStatsVBox.setVisible(false);
+        quickPlayStatsVBox.setMaxWidth(1280);
+        quickPlayStatsVBox.getChildren().clear();
+        quickPlayStatsVBox.getChildren().addAll(quickPlayGamesPlayed, quickPlayGamesWon);
+        quickPlayStatsVBox.setAlignment(Pos.CENTER);
+
 
         quickPlayGamesPlayed.setFont(Font.font(20));
         quickPlayGamesPlayed.autosize();
@@ -76,15 +90,25 @@ public class GamemodeStatsHBox extends HBox {
         quickPlayGamesWon.autosize();
     }
 
-    public void setQuickPlayInfo(Player player) {
+    public void updateQuickPlayInfo(Player player) {
         setupQuickPlayStatsBox();
-        quickPlayStatsVBox.setAlignment(Pos.TOP_RIGHT);
-        quickPlayStatsVBox.setMaxWidth(1280);
+
         quickPlayGamesPlayed.setText(String.format("Played: %d", player.accessTotalQuickPlayGames()));
         quickPlayGamesWon.setText(String.format("Won: %d", player.accessTotalQuickPlayWins()));
+
+        addQuickPlayHeroSelection(player);
 
         setVisible(true);
         competitiveStatsVBox.setVisible(false);
         quickPlayStatsVBox.setVisible(true);
+    }
+
+    private void addQuickPlayHeroSelection(Player player) {
+        HeroChoiceBox quickPlayHeroSelection = new HeroChoiceBox(player.accessQuickPlayHeroes());
+        quickPlayHeroSelection.setMaxWidth(1280);
+        quickPlayHeroSelection.setOnAction(event ->
+                heroBox.updateHeroInfo(quickPlayHeroSelection.getSelectionModel().getSelectedIndex(),
+                        player.accessQuickPlayHeroes()));
+        quickPlayStatsVBox.getChildren().add(quickPlayHeroSelection);
     }
 }

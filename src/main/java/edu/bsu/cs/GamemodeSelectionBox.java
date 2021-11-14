@@ -15,7 +15,7 @@ public class GamemodeSelectionBox extends HBox {
         this.competitiveButton = new Button("Competitive Stats");
         this.quickPlayButton = new Button("QuickPlay Stats");
         competitiveButton.setOnAction(event -> gamemodeStatsHBox.updateCompetitiveInformation(player));
-        quickPlayButton.setOnAction(event -> gamemodeStatsHBox.setQuickPlayInfo(player));
+        quickPlayButton.setOnAction(event -> gamemodeStatsHBox.updateQuickPlayInfo(player));
     }
 
     public void boxSetup(Player player) {

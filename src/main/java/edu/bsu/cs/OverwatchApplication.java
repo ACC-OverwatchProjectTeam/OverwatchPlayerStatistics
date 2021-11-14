@@ -11,15 +11,15 @@ public class OverwatchApplication extends Application {
     private final PlayerInfoBox playerInfoBox;
     private final GamemodeSelectionBox gamemodeSelectionBox;
     private final GamemodeStatsHBox gamemodeStatsHBox;
+    private final HeroStatsBox heroStatsBox = new HeroStatsBox();
     String playerData;
     Player player;
 
-
     public OverwatchApplication() {
-        this.gamemodeStatsHBox = new GamemodeStatsHBox();
+        this.gamemodeStatsHBox = new GamemodeStatsHBox(heroStatsBox);
         this.gamemodeSelectionBox = new GamemodeSelectionBox(gamemodeStatsHBox);
         this.playerInfoBox = new PlayerInfoBox();
-        this.searchHBox = new SearchHBox(player, playerData, playerInfoBox, gamemodeSelectionBox, gamemodeStatsHBox);
+        this.searchHBox = new SearchHBox(player, playerData, playerInfoBox, gamemodeSelectionBox, gamemodeStatsHBox, heroStatsBox);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class OverwatchApplication extends Application {
     }
 
     private Scene createGUI() {
-        applicationContainerBox.getChildren().addAll(searchHBox, playerInfoBox, gamemodeSelectionBox, gamemodeStatsHBox);
+        applicationContainerBox.getChildren().addAll(searchHBox, playerInfoBox, gamemodeSelectionBox, gamemodeStatsHBox, heroStatsBox);
         int sceneWidth = 1280;
         int sceneHeight = 720;
         return new Scene(applicationContainerBox, sceneWidth, sceneHeight);

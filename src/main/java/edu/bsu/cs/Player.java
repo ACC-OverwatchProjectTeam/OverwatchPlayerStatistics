@@ -22,7 +22,6 @@ public class Player {
 
         public Builder parserSetup(String dataStream) {
             this.parser = new Parser(dataStream);
-            this.heroListMaker = new HeroListMaker(parser);
             return this;
         }
 
@@ -60,6 +59,7 @@ public class Player {
         }
 
         public Builder withCompetitiveHeroes() {
+            this.heroListMaker = new HeroListMaker(parser);
             this.competitiveHeroes = heroListMaker.accessCompetitiveHeroList();
             return this;
         }
@@ -79,6 +79,7 @@ public class Player {
             return new Player(this);
         }
     }
+
     private final String playerName;
     private final String playerIcon;
     private final boolean privacySetting;

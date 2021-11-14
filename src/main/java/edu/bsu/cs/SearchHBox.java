@@ -16,13 +16,15 @@ public class SearchHBox extends HBox {
     PlayerInfoBox playerInfoBox;
     GamemodeSelectionBox gamemodeSelectionBox;
     GamemodeStatsHBox gamemodeStatsHBox;
+    HeroStatsBox heroBox;
 
-    public SearchHBox(Player player, String playerData, PlayerInfoBox playerInfoBox, GamemodeSelectionBox gamemodeSelectionBox, GamemodeStatsHBox gamemodeStatsHBox) {
+    public SearchHBox(Player player, String playerData, PlayerInfoBox playerInfoBox, GamemodeSelectionBox gamemodeSelectionBox, GamemodeStatsHBox gamemodeStatsHBox, HeroStatsBox heroBox) {
         this.player = player;
         this.playerData = playerData;
         this.gamemodeStatsHBox = gamemodeStatsHBox;
         this.gamemodeSelectionBox = gamemodeSelectionBox;
         this.playerInfoBox = playerInfoBox;
+        this.heroBox = heroBox;
         setAlignment(Pos.CENTER);
         getChildren().addAll(new HBox(textField, createSearchButton()));
     }
@@ -106,6 +108,7 @@ public class SearchHBox extends HBox {
             gamemodeStatsHBox.quickPlayStatsVBox.setVisible(false);
             gamemodeSelectionBox.setVisible(false);
             searchHBox.playerInfoBox.setVisible(false);
+            heroBox.setVisible(false);
         }
     }
 }
