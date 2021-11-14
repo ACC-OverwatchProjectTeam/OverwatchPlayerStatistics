@@ -14,6 +14,7 @@ javafx {
 
 application {
     mainClassName = 'edu.bsu.cs.OverwatchApplication'
+    mainModule.set("edu.bsu.cs")
 }
 
 version '1.0-SNAPSHOT'
