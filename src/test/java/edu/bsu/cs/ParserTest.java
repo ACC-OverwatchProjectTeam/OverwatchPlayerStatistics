@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ParserTest {
     private final InputStream dataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("LoupineData.txt");
@@ -83,58 +81,6 @@ public class ParserTest {
     }
 
     @Test
-    public void accessAsheCriticalHitsAccuracy() {
-        Assertions.assertEquals("16%", parser.accessAsheCriticalHitsAccuracy());
-    }
-
-    @Test
-    public void testAsheWeaponAccuracy(){
-        Assertions.assertEquals("49%", parser.accessAsheWeaponAccuracy());
-    }
-
-    @Test
-    public void accessAsheScopedAccuracy() {
-        Assertions.assertEquals("49%", parser.accessAsheScopedAccuracy());
-    }
-
-    @Test
-    public void accessAsheScopedCriticalHitsAccuracy() {
-        Assertions.assertEquals("16%", parser.accessAsheScopedCriticalHitsAccuracy());
-    }
-
-    @Test
-    public void accessCassidyCriticalHitsAccuracy() {
-        Assertions.assertEquals("5%", parser.accessCassidyCriticalHitsAccuracy());
-    }
-
-    @Test
-    public void accessCassidyWeaponAccuracy() {
-        Assertions.assertEquals("51%", parser.accessCassidyWeaponAccuracy());
-    }
-
-    @Test
-    public void accessHanzoCriticalHitsAccuracy() {
-        Assertions.assertEquals("7%", parser.accessHanzoCriticalHitsAccuracy());
-    }
-
-    @Test
-    public void accessHanzoWeaponAccuracy() {
-        Assertions.assertEquals("29%", parser.accessHanzoWeaponAccuracy());
-    }
-
-    @Test
-    public void testReadHeroData() {
-        List<String> heroNames = new ArrayList<>(
-                List.of("ana", "ashe", "baptiste", "bastion", "brigitte", "cassidy", "dVa",
-                        "doomfist", "echo", "genji", "hanzo", "junkrat", "lucio", "mei", "mercy",
-                        "moira", "orisa", "pharah", "reaper", "reinhardt", "roadhog", "sigma",
-                        "soldier76", "sombra", "symmetra", "torbjorn", "tracer", "widowmaker",
-                        "winston", "wreckingBall", "zarya", "zenyatta"));
-        Assertions.assertEquals("[49%, 51%, 29%, 33%, 46%, 17%, 43%]",
-                parser.accessCompetitiveHeroWeaponAccuracies(heroNames));
-    }
-
-    @Test
     public void testAccessTopCompetitiveHeroes() {
         Assertions.assertEquals("{ashe={timePlayed=06:11, " +
                 "gamesWon=0, winPercentage=100, weaponAccuracy=49, eliminationsPerLife=6.33, " +
@@ -149,6 +95,7 @@ public class ParserTest {
                 "symmetra={timePlayed=07:46, gamesWon=0, winPercentage=0, weaponAccuracy=17, " +
                 "eliminationsPerLife=6, multiKillBest=3, objectiveKills=8}, " +
                 "tracer={timePlayed=06:21, gamesWon=0, winPercentage=0, weaponAccuracy=43, " +
-                "eliminationsPerLife=3, multiKillBest=0, objectiveKills=4}}", parser.accessTopCompetitiveHeroesData());
+                "eliminationsPerLife=3, multiKillBest=0, objectiveKills=4}}",
+                parser.accessTopCompetitiveHeroesData());
     }
 }
