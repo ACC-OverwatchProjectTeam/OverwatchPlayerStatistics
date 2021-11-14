@@ -140,9 +140,15 @@ public class Parser {
         return weaponAccuracies.toString();
     }
 
-    public String accessTopCompetitiveHeroes() {
+    public String accessTopCompetitiveHeroesData() {
         JsonPath path = JsonPath.compile("$..competitiveStats.topHeroes");
         JSONArray topCompetitiveHeroesData = path.read(dataStream);
         return String.valueOf(topCompetitiveHeroesData.get(0));
+    }
+
+    public String accessTopQuickPlayHeroesData() {
+        JsonPath path = JsonPath.compile("$..quickPlayStats.topHeroes");
+        JSONArray topQuickPlayHeroesData = path.read(dataStream);
+        return String.valueOf(topQuickPlayHeroesData.get(0));
     }
 }

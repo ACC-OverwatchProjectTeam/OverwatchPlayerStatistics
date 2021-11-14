@@ -85,6 +85,7 @@ public class SearchHBox extends HBox {
                         .withPlayerLevel()
                         .withCompetitiveHeroes()
                         .withCompetitiveGameData()
+                        .withQuickPlayHeroes()
                         .withQuickPlayGameData()
                         .returnPlayer();
             }

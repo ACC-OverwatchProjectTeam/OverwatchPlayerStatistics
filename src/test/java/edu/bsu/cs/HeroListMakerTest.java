@@ -32,4 +32,18 @@ public class HeroListMakerTest {
         Assertions.assertEquals("ashe cassidy hanzo reaper soldier76 symmetra tracer",
                 heroNames.toString());
     }
+
+    @Test
+    public void testAccessQuickPlayHeroList() {
+        HeroListMaker heroListMaker = new HeroListMaker(parser);
+        StringBuilder heroNames = new StringBuilder();
+        for(Hero hero: heroListMaker.accessQuickPlayHeroList()){
+            heroNames.append(hero.accessHeroName());
+        }
+        Assertions.assertEquals("ana ashe baptiste bastion brigitte cassidy dVa doomfist " +
+                        "echo genji hanzo junkrat lucio mei mercy moira orisa pharah reaper " +
+                        "reinhardt roadhog sigma soldier76 sombra symmetra torbjorn tracer " +
+                        "widowmaker winston wreckingBall zarya zenyatta",
+                heroNames.toString());
+    }
 }

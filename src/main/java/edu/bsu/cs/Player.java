@@ -11,15 +11,18 @@ public class Player {
         private String ratingIcon;
         private int level;
         private int prestige;
+        private List<Hero> quickPlayHeroes;
         private int totalQuickPlayGames;
         private int totalQuickPlayWins;
         private int totalCompetitiveGames;
         private int totalCompetitiveWins;
         private List<Hero> competitiveHeroes;
         private Parser parser;
+        HeroListMaker heroListMaker;
 
         public Builder parserSetup(String dataStream) {
             this.parser = new Parser(dataStream);
+            this.heroListMaker = new HeroListMaker(parser);
             return this;
         }
 
@@ -57,7 +60,6 @@ public class Player {
         }
 
         public Builder withCompetitiveHeroes() {
-            HeroListMaker heroListMaker = new HeroListMaker(parser);
             this.competitiveHeroes = heroListMaker.accessCompetitiveHeroList();
             return this;
         }
@@ -68,11 +70,15 @@ public class Player {
             return this;
         }
 
+        public Builder withQuickPlayHeroes() {
+            this.quickPlayHeroes = heroListMaker.accessQuickPlayHeroList();
+            return this;
+        }
+
         public Player returnPlayer() {
             return new Player(this);
         }
     }
-
     private final String playerName;
     private final String playerIcon;
     private final boolean privacySetting;
@@ -80,6 +86,7 @@ public class Player {
     private final String ratingIcon;
     private final int level;
     private final int prestige;
+    private final List<Hero> quickPlayHeroes;
     private final int totalQuickPlayGames;
     private final int totalQuickPlayWins;
     private final List<Hero> competitiveHeroes;
@@ -97,6 +104,7 @@ public class Player {
         this.competitiveHeroes = builder.competitiveHeroes;
         this.totalCompetitiveGames = builder.totalCompetitiveGames;
         this.totalCompetitiveWins = builder.totalCompetitiveWins;
+        this.quickPlayHeroes = builder.quickPlayHeroes;
         this.totalQuickPlayGames = builder.totalQuickPlayGames;
         this.totalQuickPlayWins = builder.totalQuickPlayWins;
     }
@@ -127,6 +135,10 @@ public class Player {
 
     public int accessPrestige() {
         return prestige;
+    }
+
+    public List<Hero> accessQuickPlayHeroes() {
+        return quickPlayHeroes;
     }
 
     public int accessTotalQuickPlayGames() {
