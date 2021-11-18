@@ -1,5 +1,8 @@
 package edu.bsu.cs;
 
+import edu.bsu.cs.Model.Hero;
+import edu.bsu.cs.Model.HeroListMaker;
+import edu.bsu.cs.Model.Parser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

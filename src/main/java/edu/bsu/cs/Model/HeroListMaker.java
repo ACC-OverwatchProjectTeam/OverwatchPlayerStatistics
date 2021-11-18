@@ -1,4 +1,4 @@
-package edu.bsu.cs;
+package edu.bsu.cs.Model;
 
 import java.util.ArrayList;
 import java.util.List;

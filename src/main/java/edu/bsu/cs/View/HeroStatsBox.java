@@ -1,5 +1,6 @@
-package edu.bsu.cs;
+package edu.bsu.cs.View;
 
+import edu.bsu.cs.Model.Hero;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;

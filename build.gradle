@@ -13,7 +13,7 @@ javafx {
 }
 
 application {
-    mainClassName = 'edu.bsu.cs.OverwatchApplication'
+    mainClassName = 'edu.bsu.cs.View.OverwatchApplication'
 }
 
 version '1.0-SNAPSHOT'

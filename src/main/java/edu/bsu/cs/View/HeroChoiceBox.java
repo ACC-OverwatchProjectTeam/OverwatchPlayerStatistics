@@ -1,5 +1,6 @@
-package edu.bsu.cs;
+package edu.bsu.cs.View;
 
+import edu.bsu.cs.Model.Hero;
 import javafx.scene.control.ChoiceBox;
 
 import java.util.List;

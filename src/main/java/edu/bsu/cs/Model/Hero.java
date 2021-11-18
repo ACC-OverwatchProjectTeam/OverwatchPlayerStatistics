@@ -1,4 +1,4 @@
-package edu.bsu.cs;
+package edu.bsu.cs.Model;
 
 public class Hero {
     public static final class Builder{

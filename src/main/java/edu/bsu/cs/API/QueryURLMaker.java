@@ -1,4 +1,6 @@
-package edu.bsu.cs;
+package edu.bsu.cs.API;
+
+import edu.bsu.cs.API.QueryEngine;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

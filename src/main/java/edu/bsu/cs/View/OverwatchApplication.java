@@ -1,5 +1,6 @@
-package edu.bsu.cs;
+package edu.bsu.cs.View;
 
+import edu.bsu.cs.Model.Player;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;

@@ -1,5 +1,6 @@
-package edu.bsu.cs;
+package edu.bsu.cs.View;
 
+import edu.bsu.cs.Model.Player;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
