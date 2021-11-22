@@ -13,7 +13,7 @@ import java.io.InputStream;
 
 public class HeroListMakerTest {
     private final InputStream dataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("LoupineData.json");
-    private Parser parser;
+    private HeroListMaker heroListMaker;
 
     @BeforeEach
     public void setup() throws IOException {
@@ -22,12 +22,11 @@ public class HeroListMakerTest {
         dataStream.transferTo(byteArrayOutputStream);
 
         String testData = byteArrayOutputStream.toString();
-        this.parser = new Parser(testData);
+        this.heroListMaker = new HeroListMaker(new Parser(testData));
     }
 
     @Test
     public void testAccessCompetitiveHeroList() {
-        HeroListMaker heroListMaker = new HeroListMaker(parser);
         StringBuilder heroNames = new StringBuilder();
         for(Hero hero: heroListMaker.accessCompetitiveHeroList()){
             heroNames.append(hero.accessHeroName());
@@ -38,7 +37,6 @@ public class HeroListMakerTest {
 
     @Test
     public void testAccessQuickPlayHeroList() {
-        HeroListMaker heroListMaker = new HeroListMaker(parser);
         StringBuilder heroNames = new StringBuilder();
         for(Hero hero: heroListMaker.accessQuickPlayHeroList()){
             heroNames.append(hero.accessHeroName());
@@ -48,5 +46,50 @@ public class HeroListMakerTest {
                         "reinhardt roadhog sigma soldier76 sombra symmetra torbjorn tracer " +
                         "widowmaker winston wreckingBall zarya zenyatta",
                 heroNames.toString());
+    }
+
+    @Test
+    public void testAccessListHeroesWeaponAccuracies() {
+        StringBuilder weaponAccuracies = new StringBuilder();
+        for(Hero hero: heroListMaker.accessCompetitiveHeroList()){
+            weaponAccuracies.append(hero.accessWeaponAccuracy());
+        }
+        Assertions.assertEquals("weaponAccuracy=49 weaponAccuracy=51 weaponAccuracy=29" +
+                " weaponAccuracy=33 weaponAccuracy=46 weaponAccuracy=17 weaponAccuracy=43",
+                weaponAccuracies.toString().trim());
+    }
+
+    @Test
+    public void testAccessListHeroesWinPercentage() {
+        StringBuilder winPercentages = new StringBuilder();
+        for(Hero hero: heroListMaker.accessCompetitiveHeroList()){
+            winPercentages.append(hero.accessWinPercentage());
+        }
+        Assertions.assertEquals("winPercentage=100 winPercentage=68 winPercentage=48" +
+                        " winPercentage=0 winPercentage=0 winPercentage=0 winPercentage=0",
+                winPercentages.toString().trim());
+    }
+
+    @Test
+    public void testAccessListHeroesEliminationsPerLife() {
+        StringBuilder eliminationsPerLife = new StringBuilder();
+        for(Hero hero: heroListMaker.accessCompetitiveHeroList()){
+            eliminationsPerLife.append(hero.accessEliminationsPerLife());
+        }
+        Assertions.assertEquals("eliminationsPerLife=6.33 eliminationsPerLife=1.53 " +
+                        "eliminationsPerLife=1.2 eliminationsPerLife=2.33 eliminationsPerLife=2.2" +
+                        " eliminationsPerLife=6 eliminationsPerLife=3",
+                eliminationsPerLife.toString().trim());
+    }
+
+    @Test
+    public void testAccessListHeroesGamesWon() {
+        StringBuilder gamesWon = new StringBuilder();
+        for(Hero hero: heroListMaker.accessCompetitiveHeroList()){
+            gamesWon.append(hero.accessGamesWon());
+        }
+        Assertions.assertEquals("gamesWon=0 gamesWon=1 gamesWon=1 " +
+                        "gamesWon=0 gamesWon=0 gamesWon=0 gamesWon=0",
+                gamesWon.toString().trim());
     }
 }
