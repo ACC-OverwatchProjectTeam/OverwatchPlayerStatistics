@@ -2,7 +2,7 @@ package edu.bsu.cs.Model;
 
 public class DataFormatter {
 
-    public String formatRank(String skillRating) {
+    public String formatSkillRatingAsRankName(String skillRating) {
         int rank = Integer.parseInt(skillRating);
         if (rank > 3999){
             return "Grandmaster";
