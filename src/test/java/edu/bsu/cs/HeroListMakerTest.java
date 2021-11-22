@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class HeroListMakerTest {
-    private final InputStream dataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("LoupineData.txt");
+    private final InputStream dataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("LoupineData.json");
     private Parser parser;
 
     @BeforeEach
