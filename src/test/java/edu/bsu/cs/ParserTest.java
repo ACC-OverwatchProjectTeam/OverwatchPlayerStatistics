@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class ParserTest {
-    private final InputStream dataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("LoupineData.txt");
+    private final InputStream dataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("LoupineData.json");
     Parser parser;
 
     @BeforeEach
