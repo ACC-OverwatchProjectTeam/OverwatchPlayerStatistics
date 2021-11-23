@@ -18,7 +18,7 @@ public class Player {
         private int totalCompetitiveWins;
         private List<Hero> competitiveHeroes;
         private Parser parser;
-        HeroListMaker heroListMaker;
+        HeroListFactory heroListMaker;
 
         public Builder parserSetup(String dataStream) {
             this.parser = new Parser(dataStream);
@@ -59,7 +59,7 @@ public class Player {
         }
 
         public Builder withCompetitiveHeroes() {
-            this.heroListMaker = new HeroListMaker(parser);
+            this.heroListMaker = new HeroListFactory(parser);
             this.competitiveHeroes = heroListMaker.accessCompetitiveHeroList();
             return this;
         }
@@ -139,7 +139,7 @@ public class Player {
     }
 
     public List<Hero> accessQuickPlayHeroes() {
-        return quickPlayHeroes;
+        return List.copyOf(quickPlayHeroes);
     }
 
     public int accessTotalQuickPlayGames() {
@@ -151,7 +151,7 @@ public class Player {
     }
 
     public List<Hero> accessCompetitiveHeroes() {
-        return competitiveHeroes;
+        return List.copyOf(competitiveHeroes);
     }
 
     public int accessTotalCompetitiveGames() {

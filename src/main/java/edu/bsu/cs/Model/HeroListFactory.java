@@ -3,11 +3,11 @@ package edu.bsu.cs.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeroListMaker {
+public class HeroListFactory {
     private final List<Hero> competitiveHeroList;
     private final List<Hero> quickPlayHeroList;
 
-    public HeroListMaker(Parser parser){
+    public HeroListFactory(Parser parser){
         parser.accessTopCompetitiveHeroesData();
         this.competitiveHeroList = new ArrayList<>(createHeroList(parser.accessTopCompetitiveHeroesData()));
         this.quickPlayHeroList = new ArrayList<>(createHeroList(parser.accessTopQuickPlayHeroesData()));

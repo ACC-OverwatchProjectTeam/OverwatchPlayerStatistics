@@ -1,7 +1,7 @@
 package edu.bsu.cs;
 
 import edu.bsu.cs.Model.Hero;
-import edu.bsu.cs.Model.HeroListMaker;
+import edu.bsu.cs.Model.HeroListFactory;
 import edu.bsu.cs.Model.Parser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,9 +11,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class HeroListMakerTest {
+public class HeroListFactoryTest {
     private final InputStream dataStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("LoupineData.json");
-    private HeroListMaker heroListMaker;
+    private HeroListFactory heroListMaker;
 
     @BeforeEach
     public void setup() throws IOException {
@@ -22,7 +22,7 @@ public class HeroListMakerTest {
         dataStream.transferTo(byteArrayOutputStream);
 
         String testData = byteArrayOutputStream.toString();
-        this.heroListMaker = new HeroListMaker(new Parser(testData));
+        this.heroListMaker = new HeroListFactory(new Parser(testData));
     }
 
     @Test
