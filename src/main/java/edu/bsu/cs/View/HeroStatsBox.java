@@ -15,6 +15,7 @@ public class HeroStatsBox extends VBox {
     private final Label winPercentage = new Label("");
     private final Label gamesWon = new Label("");
     private final Text eliminationsPerLife = new Text("");
+    private final Font font = new Font(20);
 
     public HeroStatsBox() {
         setAlignment(Pos.CENTER);
@@ -24,14 +25,14 @@ public class HeroStatsBox extends VBox {
     public void updateHeroInfo(int index, List<Hero> heroList) {
         setVisible(true);
         heroName.setText(heroList.get(index).accessHeroName());
-        heroName.setFont(Font.font(20));
+        heroName.setFont(font);
         weaponAccuracy.setText(heroList.get(index).accessWeaponAccuracy());
-        weaponAccuracy.setFont(Font.font(20));
+        weaponAccuracy.setFont(font);
         winPercentage.setText(heroList.get(index).accessWinPercentage());
-        winPercentage.setFont(Font.font(20));
+        winPercentage.setFont(font);
         gamesWon.setText(heroList.get(index).accessGamesWon());
-        gamesWon.setFont(Font.font(20));
+        gamesWon.setFont(font);
         eliminationsPerLife.setText(heroList.get(index).accessEliminationsPerLife());
-        eliminationsPerLife.setFont(Font.font(20));
+        eliminationsPerLife.setFont(font);
     }
 }

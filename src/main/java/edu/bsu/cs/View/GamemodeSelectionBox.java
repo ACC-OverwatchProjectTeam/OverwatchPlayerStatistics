@@ -11,6 +11,7 @@ public class GamemodeSelectionBox extends HBox {
     private final Button competitiveButton;
     private final Button quickPlayButton;
     private Player player;
+    private final Font font = new Font(20);
 
     public GamemodeSelectionBox(GamemodeStatsHBox gamemodeStatsHBox) {
         this.competitiveButton = new Button("Competitive Stats");
@@ -28,10 +29,10 @@ public class GamemodeSelectionBox extends HBox {
         setVisible(false);
 
         competitiveButton.setMinSize(200, 75);
-        competitiveButton.setFont(Font.font(20));
+        competitiveButton.setFont(font);
 
         quickPlayButton.setMinSize(200, 75);
-        quickPlayButton.setFont(Font.font(20));
+        quickPlayButton.setFont(font);
     }
 
     private void addElements() {
@@ -44,7 +45,7 @@ public class GamemodeSelectionBox extends HBox {
 
     private Label createProfileStatusLabel() {
         Label privateProfileLabel = new Label("This profile is private. No further data can be found...");
-        privateProfileLabel.setFont(Font.font(20));
+        privateProfileLabel.setFont(font);
         return privateProfileLabel;
     }
 }

@@ -18,6 +18,7 @@ public class GamemodeStatsHBox extends HBox {
     private final TextField quickPlayGamesPlayed = new TextField();
     private final TextField quickPlayGamesWon = new TextField();
     private final HeroStatsBox heroBox;
+    private final Font font = new Font(20);
 
     public GamemodeStatsHBox(HeroStatsBox heroBox) {
         this.heroBox = heroBox;
@@ -35,13 +36,13 @@ public class GamemodeStatsHBox extends HBox {
             competitiveGamesWon);
         competitiveStatsVBox.setAlignment(Pos.CENTER);
 
-        skillRating.setFont(Font.font(20));
+        skillRating.setFont(font);
         skillRating.autosize();
 
-        competitiveGamesPlayed.setFont(Font.font(20));
+        competitiveGamesPlayed.setFont(font);
         competitiveGamesPlayed.autosize();
 
-        competitiveGamesWon.setFont(Font.font(20));
+        competitiveGamesWon.setFont(font);
         competitiveGamesWon.autosize();
         loadRatingIcon(player);
     }
@@ -84,10 +85,10 @@ public class GamemodeStatsHBox extends HBox {
         quickPlayStatsVBox.setAlignment(Pos.CENTER);
 
 
-        quickPlayGamesPlayed.setFont(Font.font(20));
+        quickPlayGamesPlayed.setFont(font);
         quickPlayGamesPlayed.autosize();
 
-        quickPlayGamesWon.setFont(Font.font(20));
+        quickPlayGamesWon.setFont(font);
         quickPlayGamesWon.autosize();
     }
 

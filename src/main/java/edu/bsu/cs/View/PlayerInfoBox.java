@@ -12,6 +12,7 @@ public class PlayerInfoBox extends HBox {
     private Player player;
     private Text playerName;
     private Text playerLevel;
+    private final Font font = new Font(20);
 
     public PlayerInfoBox() {
         setAlignment(Pos.CENTER);
@@ -22,14 +23,15 @@ public class PlayerInfoBox extends HBox {
 
     private Text createPlayerNameText() {
         this.playerName = new Text();
-        playerName.setFont(Font.font(20));
+
+        playerName.setFont(font);
         playerName.autosize();
         return playerName;
     }
 
     private Text createPlayerLevelText() {
         this.playerLevel = new Text();
-        playerLevel.setFont(Font.font(20));
+        playerLevel.setFont(font);
         playerLevel.autosize();
         return playerLevel;
     }
