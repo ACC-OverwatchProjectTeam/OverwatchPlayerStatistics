@@ -15,10 +15,10 @@ public class HeroListFactory {
 
     private List<Hero> createHeroList(String heroesData) {
         heroesData = heroesData.substring(1, heroesData.length() - 2);
-        String[] heroesArray = heroesData.split("},");
+        List<String> heroDataList = new ArrayList<>(List.of(heroesData.split("},")));
 
         List<Hero> heroList = new ArrayList<>();
-        for(String heroData: heroesArray){
+        for(String heroData: heroDataList){
             Hero hero = new Hero.Builder().withHeroData(heroData);
             heroList.add(hero);
         }
