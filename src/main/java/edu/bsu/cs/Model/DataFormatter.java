@@ -2,31 +2,30 @@ package edu.bsu.cs.Model;
 
 public class DataFormatter {
 
-    public String formatSkillRatingAsRankName (String skillRating) {
-        int rank = Integer.parseInt(skillRating);
-        Rank rank1;
+    public String formatSkillRatingAsRankName (int skillRating) {
+       Rank rank;
 
-        if (rank > 3999) {
-            rank1 = Rank.Grandmaster;
-            return new RankTest(rank1).RankSet();
-        } else if (rank > 3499) {
-            rank1 = Rank.Master;
-            return new RankTest(rank1).RankSet();
-        } else if (rank > 2999) {
-            rank1 = Rank.Diamond;
-            return new RankTest(rank1).RankSet();
-        } else if (rank > 2499) {
-            rank1 = Rank.Platinum;
-            return new RankTest(rank1).RankSet();
-        } else if (rank > 1999) {
-            rank1 = Rank.Gold;
-            return new RankTest(rank1).RankSet();
-        } else if (rank > 1499) {
-            rank1 = Rank.Silver;
-            return new RankTest(rank1).RankSet();
+        if (skillRating > 3999) {
+            rank = Rank.Grandmaster;
+            return new RankTest(rank).RankSet();
+        } else if (skillRating > 3499) {
+            rank = Rank.Master;
+            return new RankTest(rank).RankSet();
+        } else if (skillRating > 2999) {
+            rank = Rank.Diamond;
+            return new RankTest(rank).RankSet();
+        } else if (skillRating > 2499) {
+            rank = Rank.Platinum;
+            return new RankTest(rank).RankSet();
+        } else if (skillRating > 1999) {
+            rank = Rank.Gold;
+            return new RankTest(rank).RankSet();
+        } else if (skillRating > 1499) {
+            rank = Rank.Silver;
+            return new RankTest(rank).RankSet();
         } else {
-            rank1 = Rank.Bronze;
-            return new RankTest(rank1).RankSet();
+            rank = Rank.Bronze;
+            return new RankTest(rank).RankSet();
         }
     }
 

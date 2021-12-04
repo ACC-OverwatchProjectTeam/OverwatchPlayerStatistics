@@ -1,5 +1,6 @@
 package edu.bsu.cs.View;
 
+import edu.bsu.cs.Model.DataFormatter;
 import edu.bsu.cs.Model.Player;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
@@ -11,7 +12,7 @@ import javafx.scene.text.Font;
 
 public class GamemodeStatsHBox extends HBox {
     public final VBox competitiveStatsVBox = new VBox();
-    private final TextField skillRating = new TextField();
+    private final TextField overallRank = new TextField();
     private final TextField competitiveGamesPlayed = new TextField();
     private final TextField competitiveGamesWon = new TextField();
     public final VBox quickPlayStatsVBox = new VBox();
@@ -32,12 +33,12 @@ public class GamemodeStatsHBox extends HBox {
 
     private void setupCompetitiveStatsBox(Player player) {
         competitiveStatsVBox.getChildren().clear();
-        competitiveStatsVBox.getChildren().addAll(new ImageView(), skillRating, competitiveGamesPlayed,
+        competitiveStatsVBox.getChildren().addAll(new ImageView(), overallRank, competitiveGamesPlayed,
             competitiveGamesWon);
         competitiveStatsVBox.setAlignment(Pos.CENTER);
 
-        skillRating.setFont(font);
-        skillRating.autosize();
+        overallRank.setFont(font);
+        overallRank.autosize();
 
         competitiveGamesPlayed.setFont(font);
         competitiveGamesPlayed.autosize();
@@ -57,10 +58,14 @@ public class GamemodeStatsHBox extends HBox {
 
     public void updateCompetitiveInformation(Player player) {
         setupCompetitiveStatsBox(player);
+        DataFormatter dataFormatter = new DataFormatter();
 
-        skillRating.setText(String.format("Average SR: %d", player.accessSkillRating()));
+        overallRank.setText(String.format("Overall Rank: %s", dataFormatter.formatSkillRatingAsRankName(player.accessSkillRating())));
+        overallRank.setEditable(false);
         competitiveGamesPlayed.setText(String.format("Played: %d", player.accessTotalCompetitiveGames()));
+        competitiveGamesPlayed.setEditable(false);
         competitiveGamesWon.setText(String.format("Won: %d", player.accessTotalCompetitiveWins()));
+        competitiveGamesWon.setEditable(false);
 
         addCompetitiveHeroSelection(player);
 
@@ -96,7 +101,9 @@ public class GamemodeStatsHBox extends HBox {
         setupQuickPlayStatsBox();
 
         quickPlayGamesPlayed.setText(String.format("Played: %d", player.accessTotalQuickPlayGames()));
+        quickPlayGamesPlayed.setEditable(false);
         quickPlayGamesWon.setText(String.format("Won: %d", player.accessTotalQuickPlayWins()));
+        quickPlayGamesWon.setEditable(false);
 
         addQuickPlayHeroSelection(player);
 
