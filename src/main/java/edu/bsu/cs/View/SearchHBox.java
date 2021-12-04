@@ -5,6 +5,7 @@ import edu.bsu.cs.Model.Player;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 
@@ -34,7 +35,14 @@ public class SearchHBox extends HBox {
         Button searchButton = new Button("Search");
         searchButton.setOnAction(event -> initializeTask.run());
         searchButton.setFont(Font.font(20));
+        setOnKeyPressed(event -> activateSearchButton(searchButton, event.getCode()));
         return searchButton;
+    }
+
+    private void activateSearchButton(Button searchButton, KeyCode code) {
+        if (code == KeyCode.ENTER) {
+            searchButton.fire();
+        }
     }
 
     private TextField createTextField() {
