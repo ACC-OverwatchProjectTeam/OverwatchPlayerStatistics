@@ -35,7 +35,7 @@ public class LoupineParserTest {
 
     @Test
     public void testAccessSkillRating() {
-        Assertions.assertEquals(2487, parser.accessSkillRating());
+        Assertions.assertEquals(2627, parser.accessSkillRating());
     }
     
     @Test
@@ -50,7 +50,7 @@ public class LoupineParserTest {
 
     @Test
     public void testAccessRankIcon() {
-        Assertions.assertEquals("https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-GoldTier.png",
+        Assertions.assertEquals("https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-PlatinumTier.png",
                 parser.accessRatingIcon());
     }
 
@@ -98,5 +98,20 @@ public class LoupineParserTest {
                 "tracer={timePlayed=06:21, gamesWon=0, winPercentage=0, weaponAccuracy=43, " +
                 "eliminationsPerLife=3, multiKillBest=0, objectiveKills=4}}",
                 parser.accessTopCompetitiveHeroesData());
+    }
+
+    @Test
+    public void testAccessRoleRating() {
+        Assertions.assertEquals("[{\"level\":2437,\"role\":\"tank\",\"roleIcon\":" +
+                "\"https:\\/\\/static.playoverwatch.com\\/img\\/pages\\/career\\" +
+                "/icon-tank-8a52daaf01.png\",\"rankIcon\":\"https:\\/\\/d1u1mce87gyfbn.cloudfront.net" +
+                "\\/game\\/rank-icons\\/rank-PlatinumTier.png\"},{\"level\":2623,\"role\"" +
+                ":\"damage\",\"roleIcon\":\"https:\\/\\/static.playoverwatch.com\\/img\\" +
+                "/pages\\/career\\/icon-offense-6267addd52.png\",\"rankIcon\":\"https:\\/" +
+                "\\/d1u1mce87gyfbn.cloudfront.net\\/game\\/rank-icons\\/rank-PlatinumTier.png\"}" +
+                ",{\"level\":2823,\"role\":\"support\",\"roleIcon\":\"https:\\/\\" +
+                "/static.playoverwatch.com\\/img\\/pages\\/career\\/icon-support-46311a4210.png\"," +
+                "\"rankIcon\":\"https:\\/\\/d1u1mce87gyfbn.cloudfront.net\\/game\\/rank-icons\\" +
+                "/rank-PlatinumTier.png\"}]", parser.accessRoleRating());
     }
 }

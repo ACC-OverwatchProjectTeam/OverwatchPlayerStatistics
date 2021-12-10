@@ -118,7 +118,24 @@ class PlayerTest {
 
     @Test
     public void accessPrivacyStatus() {
-        Assertions.assertFalse(new Player.Builder().parserSetup(testData).accessPrivacyStatus());
+        Assertions.assertFalse(new Player.Builder().parserSetup(testData).accessPrivacyStatus());}
 
+    @Test
+    public void accessRatingList() {
+        StringBuilder roleInfoString = new StringBuilder();
+        for (String roleInfo : player.accessRatingList()){
+            roleInfoString.append(roleInfo);
+            roleInfoString.append(" ");
+        }
+        Assertions.assertEquals("[{\"level\":2437,\"role\":\"tank\",\"roleIcon\":\"https:\\" +
+                "/\\/static.playoverwatch.com\\/img\\/pages\\/career\\/icon-tank-8a52daaf01.png" +
+                "\",\"rankIcon\":\"https:\\/\\/d1u1mce87gyfbn.cloudfront.net\\/game\\/rank-icons\\" +
+                "/rank-PlatinumTier.png\" \"level\":2623,\"role\":\"damage\",\"roleIcon\":\"https:\\" +
+                "/\\/static.playoverwatch.com\\/img\\/pages\\/career\\/icon-offense-6267addd52.png\"," +
+                "\"rankIcon\":\"https:\\/\\/d1u1mce87gyfbn.cloudfront.net\\/game\\/rank-icons\\" +
+                "/rank-PlatinumTier.png\" \"level\":2823,\"role\":\"support\",\"roleIcon\":\"https:\\" +
+                "/\\/static.playoverwatch.com\\/img\\/pages\\/career\\/icon-support-46311a4210.png\"," +
+                "\"rankIcon\":\"https:\\/\\/d1u1mce87gyfbn.cloudfront.net\\/game\\/rank-icons\\" +
+                "/rank-PlatinumTier.png\"}] ", roleInfoString.toString());
     }
 }

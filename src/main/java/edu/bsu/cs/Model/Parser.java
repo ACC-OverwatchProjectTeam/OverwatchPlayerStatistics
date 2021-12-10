@@ -3,6 +3,9 @@ package edu.bsu.cs.Model;
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Parser {
     private final String heroData;
 
@@ -86,5 +89,17 @@ public class Parser {
         JsonPath path = JsonPath.compile("$..quickPlayStats.topHeroes");
         JSONArray topQuickPlayHeroesData = path.read(heroData);
         return String.valueOf(topQuickPlayHeroesData.get(0));
+    }
+
+    public List<String> accessRoleRating() {
+        JsonPath path = JsonPath.compile("$..ratings..level");
+        JSONArray roleRating = path.read(heroData);
+        StringBuilder ratings = new StringBuilder();
+        for (Object rating: roleRating) {
+            ratings.append(rating);
+            ratings.append(",");
+        }
+        System.out.println(ratings);
+        return List.of(ratings.toString().split(","));
     }
 }

@@ -1,5 +1,6 @@
 package edu.bsu.cs.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -7,7 +8,10 @@ public class Player {
         private String playerName;
         private String playerIcon;
         private boolean privacySetting;
-        private int skillRating;
+        private int averageSkillRating;
+        private int tankRating;
+        private int damageRating;
+        private int supportRating;
         private String ratingIcon;
         private int level;
         private int prestige;
@@ -19,6 +23,7 @@ public class Player {
         private List<Hero> competitiveHeroes;
         private Parser parser;
         HeroListFactory heroListMaker;
+        private List<String> ratingList;
 
         public Builder parserSetup(String dataStream) {
             this.parser = new Parser(dataStream);
@@ -41,10 +46,16 @@ public class Player {
         }
 
         public Builder withPlayerRatingInfo() {
-            this.skillRating = parser.accessSkillRating();
+            this.averageSkillRating = parser.accessSkillRating();
             this.ratingIcon = parser.accessRatingIcon();
+            List<String> rankData = parser.accessRoleRating();
+            this.tankRating = Integer.parseInt(rankData.get(0));
+            this.damageRating = Integer.parseInt(rankData.get(1));
+            this.supportRating = Integer.parseInt(rankData.get(2));
             return this;
         }
+
+
 
         public Builder withPlayerLevel() {
             this.level = parser.accessLevel();
@@ -85,6 +96,7 @@ public class Player {
     private final boolean privacySetting;
     private final int skillRating;
     private final String ratingIcon;
+    private final List<String> ratingList;
     private final int level;
     private final int prestige;
     private final List<Hero> quickPlayHeroes;
@@ -98,7 +110,8 @@ public class Player {
         this.playerName = builder.playerName;
         this.playerIcon = builder.playerIcon;
         this.privacySetting = builder.privacySetting;
-        this.skillRating = builder.skillRating;
+        this.skillRating = builder.averageSkillRating;
+        this.ratingList = builder.ratingList;
         this.ratingIcon = builder.ratingIcon;
         this.level = builder.level;
         this.prestige = builder.prestige;
@@ -129,6 +142,8 @@ public class Player {
     public String accessRatingIcon() {
         return ratingIcon;
     }
+
+    public List<String> accessRatingList() {return ratingList;}
 
     public int accessLevel() {
         return level;
