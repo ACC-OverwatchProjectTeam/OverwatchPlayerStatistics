@@ -48,9 +48,28 @@ public class Player {
             this.ratingIcon = parser.accessRatingIcon();
 
             JSONArray rankData = parser.accessRoleRating();
-            int tankRating = Integer.parseInt(rankData.get(0).toString());
-            int damageRating = Integer.parseInt(rankData.get(1).toString());
-            int supportRating = Integer.parseInt(rankData.get(2).toString());
+            int tankRating;
+            int damageRating;
+            int supportRating;
+
+            if (rankData.size() > 0) {
+                tankRating = Integer.parseInt(rankData.get(0).toString());
+            }else {
+                tankRating = 0;
+            }
+
+            if (rankData.size() > 1) {
+                damageRating = Integer.parseInt(rankData.get(1).toString());
+            }else {
+                damageRating = 0;
+            }
+
+            if (rankData.size() > 2) {
+                supportRating = Integer.parseInt(rankData.get(2).toString());
+            }else {
+                supportRating = 0;
+            }
+
             this.ratingList = List.of(tankRating, damageRating, supportRating);
             return this;
         }
