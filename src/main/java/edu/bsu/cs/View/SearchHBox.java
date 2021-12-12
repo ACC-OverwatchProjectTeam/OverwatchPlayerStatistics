@@ -13,13 +13,14 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class SearchHBox extends HBox {
-    public final TextField textField = createTextField();
+    public final TextField searchField = createTextField();
     private Player player;
     private String playerData;
     PlayerInfoBox playerInfoBox;
     GamemodeSelectionBox gamemodeSelectionBox;
     GamemodeStatsHBox gamemodeStatsHBox;
     HeroStatsBox heroStatsBox;
+    private final Font font = new Font(20);
 
     public SearchHBox(ApplicationContainerBox applicationContainerBox) {
         this.gamemodeStatsHBox = applicationContainerBox.accessGamemodeStatsHBox();
@@ -27,14 +28,15 @@ public class SearchHBox extends HBox {
         this.playerInfoBox = applicationContainerBox.accessPlayerInfoBox();
         this.heroStatsBox = applicationContainerBox.accessHeroStatsBox();
         setAlignment(Pos.CENTER);
-        getChildren().addAll(new HBox(textField, createSearchButton()));
+        getChildren().addAll(new HBox(searchField, createSearchButton()));
     }
 
     private Button createSearchButton() {
         InitializeApplicationTask initializeTask = new InitializeApplicationTask();
         Button searchButton = new Button("Search");
         searchButton.setOnAction(event -> initializeTask.run());
-        searchButton.setFont(Font.font(20));
+        searchButton.setMinWidth(100);
+        searchButton.setFont(font);
         setOnKeyPressed(event -> activateSearchButton(searchButton, event.getCode()));
         return searchButton;
     }
@@ -46,9 +48,11 @@ public class SearchHBox extends HBox {
     }
 
     private TextField createTextField() {
-        TextField textField = new TextField("Enter your exact BattleTag");
-        textField.setFont(Font.font(20));
-        return textField;
+        TextField searchField = new TextField("Enter your exact BattleTag");
+        searchField.setFont(Font.font(20));
+        searchField.setAlignment(Pos.CENTER);
+        searchField.setMinWidth(400);
+        return searchField;
     }
 
     private final class InitializeApplicationTask implements Runnable {
@@ -71,7 +75,7 @@ public class SearchHBox extends HBox {
 
         private void setPlayerData() {
             QueryURLMaker searchQuery = new QueryURLMaker();
-            String playerBattleTag = searchHBox.textField.getText();
+            String playerBattleTag = searchHBox.searchField.getText();
             try {
                 playerData = searchQuery.createURLFromSearchQuery(playerBattleTag);
             } catch (URISyntaxException | InterruptedException | IOException e) {

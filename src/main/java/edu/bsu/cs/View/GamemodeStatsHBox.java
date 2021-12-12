@@ -12,7 +12,8 @@ import javafx.scene.text.Font;
 
 public class GamemodeStatsHBox extends HBox {
     public final VBox competitiveStatsVBox = new VBox();
-    private final TextField overallRank = new TextField();
+    private final TextField averageRank = new TextField();
+    private final TextField specificRanks = new TextField();
     private final TextField competitiveGamesPlayed = new TextField();
     private final TextField competitiveGamesWon = new TextField();
     public final VBox quickPlayStatsVBox = new VBox();
@@ -23,28 +24,30 @@ public class GamemodeStatsHBox extends HBox {
 
     public GamemodeStatsHBox(HeroStatsBox heroBox) {
         this.heroBox = heroBox;
-        getChildren().addAll(competitiveStatsVBox, quickPlayStatsVBox);
         setAlignment(Pos.CENTER);
-        competitiveStatsVBox.setMaxWidth(640);
-        quickPlayStatsVBox.setMaxWidth(1280);
         setVisible(false);
     }
 
 
     private void setupCompetitiveStatsBox(Player player) {
+        getChildren().clear();
         competitiveStatsVBox.getChildren().clear();
-        competitiveStatsVBox.getChildren().addAll(new ImageView(), overallRank, competitiveGamesPlayed,
+        competitiveStatsVBox.getChildren().addAll(new ImageView(), averageRank, specificRanks, competitiveGamesPlayed,
             competitiveGamesWon);
         competitiveStatsVBox.setAlignment(Pos.CENTER);
 
-        overallRank.setFont(font);
-        overallRank.autosize();
+        averageRank.setFont(font);
+        averageRank.setAlignment(Pos.CENTER);
+
+        specificRanks.setFont(font);
+        specificRanks.setMinWidth(500);
+        specificRanks.setAlignment(Pos.CENTER);
 
         competitiveGamesPlayed.setFont(font);
-        competitiveGamesPlayed.autosize();
+        competitiveGamesPlayed.setAlignment(Pos.CENTER);
 
         competitiveGamesWon.setFont(font);
-        competitiveGamesWon.autosize();
+        competitiveGamesWon.setAlignment(Pos.CENTER);
         loadRatingIcon(player);
     }
 
@@ -58,10 +61,15 @@ public class GamemodeStatsHBox extends HBox {
 
     public void updateCompetitiveInformation(Player player) {
         setupCompetitiveStatsBox(player);
-        DataFormatter dataFormatter = new DataFormatter();
+        getChildren().add(competitiveStatsVBox);
 
-        overallRank.setText(String.format("Overall Rank: %s", dataFormatter.formatSkillRatingAsRankName(player.accessSkillRating())));
-        overallRank.setEditable(false);
+        DataFormatter dataFormatter = new DataFormatter();
+        averageRank.setText(String.format("Average Rank: %s", dataFormatter.formatSkillRatingAsRankName(player.accessSkillRating())));
+        averageRank.setEditable(false);
+        specificRanks.setText(String.format("Tank SR: %d  Damage SR: %d  Support SR: %d",
+                player.accessRatingList().get(0), player.accessRatingList().get(1),
+                player.accessRatingList().get(2)));
+        specificRanks.setEditable(false);
         competitiveGamesPlayed.setText(String.format("Played: %d", player.accessTotalCompetitiveGames()));
         competitiveGamesPlayed.setEditable(false);
         competitiveGamesWon.setText(String.format("Won: %d", player.accessTotalCompetitiveWins()));
@@ -70,13 +78,12 @@ public class GamemodeStatsHBox extends HBox {
         addCompetitiveHeroSelection(player);
 
         setVisible(true);
-        quickPlayStatsVBox.setVisible(false);
         competitiveStatsVBox.setVisible(true);
     }
 
     private void addCompetitiveHeroSelection(Player player) {
         HeroChoiceBox competitiveHeroSelection = new HeroChoiceBox(player.accessCompetitiveHeroes());
-        competitiveHeroSelection.setMaxWidth(640);
+        competitiveHeroSelection.setMaxWidth(1280);
         competitiveHeroSelection.setOnAction(event ->
                 heroBox.updateHeroInfo(competitiveHeroSelection.getSelectionModel().getSelectedIndex(),
                         player.accessCompetitiveHeroes()));
@@ -84,21 +91,20 @@ public class GamemodeStatsHBox extends HBox {
     }
 
     private void setupQuickPlayStatsBox() {
-        quickPlayStatsVBox.setMaxWidth(1280);
+        getChildren().clear();
+        quickPlayStatsVBox.setMinWidth(500);
         quickPlayStatsVBox.getChildren().clear();
         quickPlayStatsVBox.getChildren().addAll(quickPlayGamesPlayed, quickPlayGamesWon);
-        quickPlayStatsVBox.setAlignment(Pos.CENTER);
-
 
         quickPlayGamesPlayed.setFont(font);
-        quickPlayGamesPlayed.autosize();
-
+        quickPlayGamesPlayed.setAlignment(Pos.CENTER);
         quickPlayGamesWon.setFont(font);
-        quickPlayGamesWon.autosize();
+        quickPlayGamesWon.setAlignment(Pos.CENTER);
     }
 
     public void updateQuickPlayInfo(Player player) {
         setupQuickPlayStatsBox();
+        getChildren().add(quickPlayStatsVBox);
 
         quickPlayGamesPlayed.setText(String.format("Played: %d", player.accessTotalQuickPlayGames()));
         quickPlayGamesPlayed.setEditable(false);
@@ -108,7 +114,6 @@ public class GamemodeStatsHBox extends HBox {
         addQuickPlayHeroSelection(player);
 
         setVisible(true);
-        competitiveStatsVBox.setVisible(false);
         quickPlayStatsVBox.setVisible(true);
     }
 
