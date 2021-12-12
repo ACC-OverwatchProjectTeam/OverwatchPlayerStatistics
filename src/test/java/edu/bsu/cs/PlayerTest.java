@@ -1,7 +1,6 @@
 package edu.bsu.cs;
 
 import edu.bsu.cs.Model.Hero;
-
 import edu.bsu.cs.Model.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -55,12 +54,12 @@ class PlayerTest {
 
     @Test
     public void accessSkillRating() {
-        Assertions.assertEquals(2487, player.accessSkillRating());
+        Assertions.assertEquals(2627, player.accessSkillRating());
     }
 
     @Test
     public void accessRatingIcon() {
-        Assertions.assertEquals("https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-GoldTier.png", player.accessRatingIcon());
+        Assertions.assertEquals("https://d1u1mce87gyfbn.cloudfront.net/game/rank-icons/rank-PlatinumTier.png", player.accessRatingIcon());
     }
 
     @Test
@@ -79,7 +78,7 @@ class PlayerTest {
         for(Hero hero: player.accessQuickPlayHeroes()){
             heroNames.append(hero.accessHeroName());
         }
-        Assertions.assertEquals("ana ashe baptiste bastion brigitte cassidy dVa doomfist " +
+        Assertions.assertEquals(" ana ashe baptiste bastion brigitte cassidy dVa doomfist " +
                         "echo genji hanzo junkrat lucio mei mercy moira orisa pharah reaper " +
                         "reinhardt roadhog sigma soldier76 sombra symmetra torbjorn tracer " +
                         "widowmaker winston wreckingBall zarya zenyatta",
@@ -102,7 +101,7 @@ class PlayerTest {
         for(Hero hero: player.accessCompetitiveHeroes()){
             heroNames.append(hero.accessHeroName());
         }
-        Assertions.assertEquals("ashe cassidy hanzo reaper soldier76 symmetra tracer",
+        Assertions.assertEquals(" ashe cassidy hanzo reaper soldier76 symmetra tracer",
                 heroNames.toString());
     }
 
@@ -118,24 +117,11 @@ class PlayerTest {
 
     @Test
     public void accessPrivacyStatus() {
-        Assertions.assertFalse(new Player.Builder().parserSetup(testData).accessPrivacyStatus());}
+        Assertions.assertFalse(new Player.Builder().parserSetup(testData).accessPrivacyStatus());
+    }
 
     @Test
     public void accessRatingList() {
-        StringBuilder roleInfoString = new StringBuilder();
-        for (String roleInfo : player.accessRatingList()){
-            roleInfoString.append(roleInfo);
-            roleInfoString.append(" ");
+        Assertions.assertEquals("[2437, 2623, 2823]", player.accessRatingList().toString());
         }
-        Assertions.assertEquals("[{\"level\":2437,\"role\":\"tank\",\"roleIcon\":\"https:\\" +
-                "/\\/static.playoverwatch.com\\/img\\/pages\\/career\\/icon-tank-8a52daaf01.png" +
-                "\",\"rankIcon\":\"https:\\/\\/d1u1mce87gyfbn.cloudfront.net\\/game\\/rank-icons\\" +
-                "/rank-PlatinumTier.png\" \"level\":2623,\"role\":\"damage\",\"roleIcon\":\"https:\\" +
-                "/\\/static.playoverwatch.com\\/img\\/pages\\/career\\/icon-offense-6267addd52.png\"," +
-                "\"rankIcon\":\"https:\\/\\/d1u1mce87gyfbn.cloudfront.net\\/game\\/rank-icons\\" +
-                "/rank-PlatinumTier.png\" \"level\":2823,\"role\":\"support\",\"roleIcon\":\"https:\\" +
-                "/\\/static.playoverwatch.com\\/img\\/pages\\/career\\/icon-support-46311a4210.png\"," +
-                "\"rankIcon\":\"https:\\/\\/d1u1mce87gyfbn.cloudfront.net\\/game\\/rank-icons\\" +
-                "/rank-PlatinumTier.png\"}] ", roleInfoString.toString());
-    }
 }

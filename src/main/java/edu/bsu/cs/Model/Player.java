@@ -1,6 +1,7 @@
 package edu.bsu.cs.Model;
 
-import java.util.ArrayList;
+import net.minidev.json.JSONArray;
+
 import java.util.List;
 
 public class Player {
@@ -9,9 +10,6 @@ public class Player {
         private String playerIcon;
         private boolean privacySetting;
         private int averageSkillRating;
-        private int tankRating;
-        private int damageRating;
-        private int supportRating;
         private String ratingIcon;
         private int level;
         private int prestige;
@@ -23,7 +21,7 @@ public class Player {
         private List<Hero> competitiveHeroes;
         private Parser parser;
         HeroListFactory heroListMaker;
-        private List<String> ratingList;
+        private List<Integer> ratingList;
 
         public Builder parserSetup(String dataStream) {
             this.parser = new Parser(dataStream);
@@ -48,14 +46,14 @@ public class Player {
         public Builder withPlayerRatingInfo() {
             this.averageSkillRating = parser.accessSkillRating();
             this.ratingIcon = parser.accessRatingIcon();
-            List<String> rankData = parser.accessRoleRating();
-            this.tankRating = Integer.parseInt(rankData.get(0));
-            this.damageRating = Integer.parseInt(rankData.get(1));
-            this.supportRating = Integer.parseInt(rankData.get(2));
+
+            JSONArray rankData = parser.accessRoleRating();
+            int tankRating = Integer.parseInt(rankData.get(0).toString());
+            int damageRating = Integer.parseInt(rankData.get(1).toString());
+            int supportRating = Integer.parseInt(rankData.get(2).toString());
+            this.ratingList = List.of(tankRating, damageRating, supportRating);
             return this;
         }
-
-
 
         public Builder withPlayerLevel() {
             this.level = parser.accessLevel();
@@ -90,13 +88,12 @@ public class Player {
             return new Player(this);
         }
     }
-
     private final String playerName;
     private final String playerIcon;
     private final boolean privacySetting;
     private final int skillRating;
     private final String ratingIcon;
-    private final List<String> ratingList;
+    private final List<Integer> ratingList;
     private final int level;
     private final int prestige;
     private final List<Hero> quickPlayHeroes;
@@ -143,7 +140,9 @@ public class Player {
         return ratingIcon;
     }
 
-    public List<String> accessRatingList() {return ratingList;}
+    public List<Integer> accessRatingList() {
+        return List.copyOf(ratingList);
+    }
 
     public int accessLevel() {
         return level;

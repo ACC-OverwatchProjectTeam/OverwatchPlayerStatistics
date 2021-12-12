@@ -15,10 +15,22 @@ public class HeroListFactory {
 
     private List<Hero> createHeroList(String heroesData) {
         heroesData = heroesData.substring(1, heroesData.length() - 2);
-        List<String> heroDataList = new ArrayList<>(List.of(heroesData.split("},")));
+
+        int firstMiscellaneousIndex = heroesData.indexOf("miscellaneous");
+        heroesData = heroesData.substring(heroesData.indexOf("}, ", firstMiscellaneousIndex) + 2,
+                heroesData.length() - 1);
+
+        List<String> heroDataList = new ArrayList<>(List.of(heroesData.split("miscellaneous")));
+        heroDataList.remove(heroDataList.size() - 1);
 
         List<Hero> heroList = new ArrayList<>();
         for(String heroData: heroDataList){
+            heroData = heroData.substring(heroData.indexOf(" "), heroData.length() - 2);
+
+            if (heroData.indexOf("turretsDestroyed") < 20) {
+                heroData = heroData.substring(heroData.indexOf("}}") + 1, heroData.length() - 1);
+            }
+
             Hero hero = new Hero.Builder().withHeroData(heroData);
             heroList.add(hero);
         }
